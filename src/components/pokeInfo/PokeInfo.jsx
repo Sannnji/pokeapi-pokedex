@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { Box, Flex } from "@chakra-ui/layout";
-import { Image, Text } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 
 import { useContext } from "react";
 import { PokeContext } from "../../context";

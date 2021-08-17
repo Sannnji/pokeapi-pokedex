@@ -1,4 +1,4 @@
-import { Container, Box } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 
 export const Layout = (props) => {
   return (
