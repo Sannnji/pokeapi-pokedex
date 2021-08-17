@@ -41,7 +41,8 @@ const PokeList = () => {
             >
               <Image
                 src={
-                  process.env.PUBLIC_URL + `/images/regular/${element.name}.png`
+                  process.env.PUBLIC_URL +
+                  `/images/boxSprites/${element.name}.png`
                 }
                 opacity="100%"
               />
