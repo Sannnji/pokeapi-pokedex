@@ -1,8 +1,13 @@
 import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
+  useSystemColorMode: false,
   styles: {
-    backgroundColor: "#B35D5D",
+    global: {
+      "html, body": {
+        backgroundColor: "#B35D5D",
+      },
+    },
   },
 });
 
