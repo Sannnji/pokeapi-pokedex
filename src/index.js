@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+
+import theme from "./theme";
 
 const client = new ApolloClient({
   uri: "https://pokeapi-graphql-wrapper.herokuapp.com",
@@ -11,7 +14,10 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <App />
+    <ChakraProvider theme={theme}>
+      <ColorModeScript />
+      <App />
+    </ChakraProvider>
   </ApolloProvider>,
   document.getElementById("root")
 );

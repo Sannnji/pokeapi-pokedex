@@ -1,17 +1,22 @@
-import { gql, useQuery } from "@apollo/client";
+import React from "react";
+import { Flex } from "@chakra-ui/layout";
+
+import { Layout } from "./components/Layout";
+import PokeList from "./components/PokeList";
+import PokeInfo from "./components/pokeInfo/PokeInfo";
+import { PokeProvider } from "./context";
 
 function App() {
-  const GET_HELLO = gql`
-    query hello {
-      hello
-    }
-  `;
-
-  const { loading, error, data } = useQuery(GET_HELLO);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>error: {error}</p>;
-  return <p>{data.hello}</p>;
+  return (
+    <Layout>
+      <Flex align="center" justify="space-between">
+        <PokeProvider>
+          <PokeList />
+          <PokeInfo />
+        </PokeProvider>
+      </Flex>
+    </Layout>
+  );
 }
 
 export default App;
