@@ -8,7 +8,10 @@ const BasicSection = (props) => {
         <Text>{props.name}</Text>
       </Flex>
       <Flex flexDir="row">
-        <Text></Text>
+        {props.type.map((element) => {
+          return <Text>{element.name}</Text>;
+        })}
+        <Text>{console.log(props.type)}</Text>
       </Flex>
     </Flex>
   );

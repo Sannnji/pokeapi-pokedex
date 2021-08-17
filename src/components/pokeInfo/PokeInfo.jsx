@@ -4,6 +4,7 @@ import { Image, Text } from "@chakra-ui/react";
 
 import { useContext } from "react";
 import { PokeContext } from "../../context";
+import AbilitySection from "./components/AbilitySection";
 import BasicSection from "./components/BasicSection";
 
 const PokeInfo = () => {
@@ -30,11 +31,17 @@ const PokeInfo = () => {
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>error: {error}</p>;
+  const pokemon = data.pokemon;
   return (
     <Box bg="white" borderRadius="lg" color="#646464">
       <Flex flexdir="row">
-        <Image src={data.pokemon.sprites.front_default} />
-        <BasicSection id={data.pokemon.id} name={data.pokemon.name} />
+        <Image src={pokemon.sprites.front_default} />
+        <BasicSection
+          id={pokemon.id}
+          name={pokemon.name}
+          type={pokemon.type}
+        />
+        <AbilitySection />
       </Flex>
     </Box>
   );
