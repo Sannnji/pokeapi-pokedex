@@ -1,12 +1,14 @@
 import { Flex, Text, Heading } from "@chakra-ui/react";
 
 const AbilitySection = (props) => {
+  const abilities = props.abilities;
   return (
     <Flex flexDir="column">
       <Heading>Abilities</Heading>
       <Flex flexDir="row">
-        <Text>No. 00{props.id}</Text>
-        <Text>{props.name}</Text>
+        {abilities.map((ability) => {
+          return <Text>{ability.name}</Text>;
+        })}
       </Flex>
     </Flex>
   );
