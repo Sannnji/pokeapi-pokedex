@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 import { SimpleGrid, Flex } from "@chakra-ui/react";
-import { VStack, Image } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 
 import { useContext } from "react";
 import { PokeContext } from "../../Context";

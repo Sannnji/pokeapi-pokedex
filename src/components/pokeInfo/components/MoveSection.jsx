@@ -15,7 +15,7 @@ const MoveSection = (props) => {
               <Text>{move.power}</Text>
             </Flex>
           );
-        } else return;
+        } else return null;
       })}
     </Flex>
   );
