@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Image, Box, SimpleGrid, Flex } from "@chakra-ui/react";
 
-import { PokeContext } from "../../Context";
+import { PokeContext } from "../../context";
 import SearchBar from "./components/SeachBar";
 
 const PokeList = () => {

@@ -3,7 +3,7 @@ import { SimpleGrid, Flex } from "@chakra-ui/react";
 import { Image } from "@chakra-ui/react";
 
 import { useContext } from "react";
-import { PokeContext } from "../../Context";
+import { PokeContext } from "../../context";
 import AbilitySection from "./components/AbilitySection";
 import BasicSection from "./components/BasicSection";
 import MoveSection from "./components/MoveSection";
