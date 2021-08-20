@@ -60,27 +60,19 @@ const PokeInfo = () => {
       bg="white"
       borderRadius="lg"
       color="#646464"
-      maxH={525}
-      py={2}
-      px={2}
+      maxH={500}
+      p={2}
+      spacing={2}
       columns={2}
+      overflow="hidden"
     >
- 
-        <Flex flexDr="row" align="center">
-          <Image src={pokemon.sprites.front_default} />
-          <BasicSection
-            id={pokemon.id}
-            name={pokemon.name}
-            type={pokemon.type}
-          />
-        </Flex>
-        <AbilitySection abilities={pokemon.abilities} />
-
-        <MoveSection moves={pokemon.moves} />
-
-
-        <StatSection stats={pokemon.stats} />
-
+      <Flex flexDr="row" align="center">
+        <Image src={pokemon.sprites.front_default} />
+        <BasicSection id={pokemon.id} name={pokemon.name} type={pokemon.type} />
+      </Flex>
+      <AbilitySection abilities={pokemon.abilities} />
+      <MoveSection moves={pokemon.moves} />
+      <StatSection stats={pokemon.stats} />
     </SimpleGrid>
   );
 };

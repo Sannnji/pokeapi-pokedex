@@ -17,7 +17,7 @@ const BasicSection = (props) => {
   };
 
   return (
-    <Flex flexDir="column">
+    <Flex flexDir="column" minW="250px">
       <Flex flexDir="row">
         <IdWithZeros />
         <Text  ml={2}>{capitalize(props.name)}</Text>
