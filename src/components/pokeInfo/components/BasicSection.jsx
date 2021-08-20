@@ -20,12 +20,12 @@ const BasicSection = (props) => {
     <Flex flexDir="column">
       <Flex flexDir="row">
         <IdWithZeros />
-        <Text>{capitalize(props.name)}</Text>
+        <Text  ml={2}>{capitalize(props.name)}</Text>
       </Flex>
       <Flex flexDir="row">
         {props.type.map((element) => {
           return (
-            <Flex align="center">
+            <Flex align="center" textAlign="center">
               <Image
                 src={
                   process.env.PUBLIC_URL +

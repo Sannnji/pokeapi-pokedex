@@ -1,5 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
-import { Box, Flex } from "@chakra-ui/react";
+import { SimpleGrid, Flex } from "@chakra-ui/react";
 import { VStack, Image } from "@chakra-ui/react";
 
 import { useContext } from "react";
@@ -55,7 +55,7 @@ const PokeInfo = () => {
   const pokemon = data.pokemon;
 
   return (
-    <Flex
+    <SimpleGrid
       flexDir="row"
       bg="white"
       borderRadius="lg"
@@ -63,9 +63,10 @@ const PokeInfo = () => {
       maxH={525}
       py={2}
       px={2}
+      columns={2}
     >
-      <VStack flexdir="column" align="center">
-        <Flex flexDr="row">
+ 
+        <Flex flexDr="row" align="center">
           <Image src={pokemon.sprites.front_default} />
           <BasicSection
             id={pokemon.id}
@@ -73,14 +74,14 @@ const PokeInfo = () => {
             type={pokemon.type}
           />
         </Flex>
-        <MoveSection moves={pokemon.moves} />
-      </VStack>
-
-      <VStack maxH={400} overflow={"hidden"}>
         <AbilitySection abilities={pokemon.abilities} />
+
+        <MoveSection moves={pokemon.moves} />
+
+
         <StatSection stats={pokemon.stats} />
-      </VStack>
-    </Flex>
+
+    </SimpleGrid>
   );
 };
 

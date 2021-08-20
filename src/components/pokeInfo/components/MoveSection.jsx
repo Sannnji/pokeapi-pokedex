@@ -1,11 +1,11 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 const MoveSection = (props) => {
   const moves = props.moves;
 
   return (
-    <Flex flexDir="column">
-      <Heading>Moves By Level</Heading>
+    <Flex flexDir="column" align="center">
+      <Text>Moves learned by lvl</Text>
       {moves.map((move) => {
         if (move) {
           return (

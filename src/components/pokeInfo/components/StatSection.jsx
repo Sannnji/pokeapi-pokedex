@@ -1,11 +1,11 @@
-import { Flex, Heading, Text } from "@chakra-ui/react";
+import { Flex,  Text } from "@chakra-ui/react";
 
 const StatSection = (props) => {
   const stats = props.stats;
 
   return (
     <Flex flexDir="column">
-      <Heading>Base Stats</Heading>
+      <Text>Base Stats</Text>
       <Text>{stats.hp}</Text>
       <Text>{stats.attack}</Text>
       <Text>{stats.defense}</Text>
