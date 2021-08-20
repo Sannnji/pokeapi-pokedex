@@ -1,4 +1,4 @@
-import { Flex, Text, Box, Grid } from "@chakra-ui/react";
+import { Flex, Text, Box } from "@chakra-ui/react";
 
 const StatSection = (props) => {
   const stats = props.stats;
