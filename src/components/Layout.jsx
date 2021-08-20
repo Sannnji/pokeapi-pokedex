@@ -3,7 +3,7 @@ import { Box, Heading } from "@chakra-ui/react";
 export const Layout = (props) => {
   return (
     <Box m={12} align="center">
-      <Heading mb={2} ml={2} textAlign="left">
+      <Heading mb={2} ml={2} textAlign="left" color="white">
         PokeAPI PokeDex
       </Heading>
       {props.children}
