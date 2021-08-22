@@ -51,10 +51,10 @@ const PokeList = () => {
         })}
       </SimpleGrid>
       <Flex justifyContent="center">
-        <Button>
+        <Button mr={2}>
           <i class="fas fa-caret-left"></i>
         </Button>
-        <Button>
+        <Button ml={2}>
           <i class="fas fa-caret-right"></i>
         </Button>
       </Flex>

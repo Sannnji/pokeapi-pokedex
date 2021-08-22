@@ -20,7 +20,7 @@ const BasicSection = (props) => {
 
   return (
     <Flex flexDir="column" minW="250px">
-      <Flex flexDir="row">
+      <Flex flexDir="row" ml={1}>
         <IdWithZeros />
         <Text ml={2}>{capitalize(props.name)}</Text>
       </Flex>
@@ -30,6 +30,7 @@ const BasicSection = (props) => {
             <TypeBanner
               typeName={type.name}
               typeColor={setTypeColor(type.name)}
+              mx={1}
             />
           );
         })}

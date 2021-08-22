@@ -1,4 +1,7 @@
 import { Flex, Text, Box } from "@chakra-ui/react";
+
+import { replaceHyphon } from "../../../utils/replaceHyphen";
+import { capitalize } from "../../../utils/capitalize";
 import { setTypeColor } from "../../../utils/setTypeColor";
 import TypeBanner from "../../TypeBanner";
 
@@ -13,7 +16,7 @@ const MoveSection = (props) => {
         px={4}
         py={2}
         my={2}
-        mx={8}
+        mx="auto"
         borderRadius="lg"
         bg="white"
       >
@@ -36,7 +39,7 @@ const MoveSection = (props) => {
               <MoveContainer
                 type={move.type}
                 typeColor={setTypeColor(move.type)}
-                name={move.name}
+                name={capitalize(replaceHyphon(move.name))}
                 power={move.power}
               />
             );

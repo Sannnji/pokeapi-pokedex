@@ -1,11 +1,11 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 export const Layout = (props) => {
   return (
     <Box m={12} align="center">
-      <Heading mb={2} ml={2} textAlign="left" color="white">
+      <Text mb={12} mt={-8} ml={2} fontSize="xl" textAlign="left" color="white">
         PokeAPI PokeDex
-      </Heading>
+      </Text>
       {props.children}
     </Box>
   );

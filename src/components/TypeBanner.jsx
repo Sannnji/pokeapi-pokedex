@@ -1,5 +1,7 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 
+import { capitalize } from "../utils/capitalize";
+
 const TypeBanner = (props) => {
   return (
     <Flex
@@ -7,23 +9,23 @@ const TypeBanner = (props) => {
       py={0.5}
       bg={props.typeColor}
       align="center"
-      textAlign="center"
       boxShadow="lg"
       borderRadius="full"
+      width="100px"
       {...props}
     >
       <Image
         src={process.env.PUBLIC_URL + `/images/typeIcons/${props.typeName}.png`}
         width={"24px"}
       />
+
       <Text
-        pl={1}
-        pr={4}
+        textAlign="center"
         borderTopRightRadius="full"
         borderBottomRightRadius="full"
         color="white"
       >
-        {props.typeName}
+        {capitalize(props.typeName)}
       </Text>
     </Flex>
   );
