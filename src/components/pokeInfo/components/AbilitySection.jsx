@@ -19,7 +19,7 @@ const AbilitySection = (props) => {
             <Text
               color="white"
               bg="#646464"
-              fontSize="xl"
+              fontSize="md"
               boxShadow="lg"
               borderRadius="full"
               px={4}

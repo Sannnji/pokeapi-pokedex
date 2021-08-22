@@ -1,12 +1,23 @@
 import { Flex, Text, Box } from "@chakra-ui/react";
+import { setTypeColor } from "../../../utils/setTypeColor";
+import TypeBanner from "../../TypeBanner";
 
 const MoveSection = (props) => {
   const moves = props.moves;
 
   const MoveContainer = (props) => {
     return (
-      <Flex flexDir="row">
-        <Text>{props.type}</Text>
+      <Flex
+        flexDir="row"
+        align="center"
+        px={4}
+        py={2}
+        my={2}
+        mx={8}
+        borderRadius="lg"
+        bg="white"
+      >
+        <TypeBanner typeName={props.type} typeColor={props.typeColor} my={2} />
         <Text mx={1}>{props.name}</Text>
         <Text>{props.power}</Text>
       </Flex>
@@ -24,6 +35,7 @@ const MoveSection = (props) => {
             return (
               <MoveContainer
                 type={move.type}
+                typeColor={setTypeColor(move.type)}
                 name={move.name}
                 power={move.power}
               />

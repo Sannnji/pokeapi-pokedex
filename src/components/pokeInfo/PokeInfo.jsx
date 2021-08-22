@@ -57,7 +57,7 @@ const PokeInfo = () => {
   return (
     <SimpleGrid
       flexDir="row"
-      bg="white"
+      bg="#F1F1F1"
       borderRadius="lg"
       color="#646464"
       maxH={500}
