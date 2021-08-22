@@ -59,7 +59,7 @@ const PokeList = () => {
         <Button
           mr={2}
           onClick={() => {
-            if (idRange.start == 0) {
+            if (idRange.start === 0) {
               return;
             } else {
               setIdRange({ start: idRange.start - 30 });
