@@ -19,12 +19,12 @@ const BasicSection = (props) => {
   };
 
   return (
-    <Flex flexDir="column" minW="250px">
+    <Flex flexDir="column" align="center" minW="250px">
       <Flex flexDir="row" ml={1}>
         <IdWithZeros />
         <Text ml={2}>{capitalize(props.name)}</Text>
       </Flex>
-      <Flex flexDir="row">
+      <Flex flexDir="row" my={2}>
         {props.type.map((type) => {
           return (
             <TypeBanner

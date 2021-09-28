@@ -5,7 +5,7 @@ const AbilitySection = (props) => {
   const abilities = props.abilities;
   return (
     <Flex flexDir="column" align="center" mt={4} minW="260px">
-      <Text fontSize="xl" color="#646464" fontWeight="semibold" mb={2}>
+      <Text fontSize="xl" fontWeight="semibold" mb={2}>
         Abilities
       </Text>
       <SimpleGrid

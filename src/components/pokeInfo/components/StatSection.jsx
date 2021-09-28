@@ -14,9 +14,10 @@ const StatSection = (props) => {
       </Box>
     );
   };
+  
   return (
     <Flex flexDir="column" align="center">
-      <Text fontSize="xl" color="#646464" fontWeight="semibold" mb={2}>
+      <Text fontSize="xl" fontWeight="semibold" mb={2}>
         Base Stats
       </Text>
       <Flex

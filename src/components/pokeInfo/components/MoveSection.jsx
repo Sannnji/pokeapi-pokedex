@@ -21,7 +21,7 @@ const MoveSection = (props) => {
         bg="white"
       >
         <TypeBanner typeName={props.type} typeColor={props.typeColor} my={2} />
-        <Text mx={1}>{props.name}</Text>
+        <Text color="#646464" mx={1}>{props.name}</Text>
         <Text>{props.power}</Text>
       </Flex>
     );
@@ -29,7 +29,7 @@ const MoveSection = (props) => {
 
   return (
     <Flex flexDir="column" align="center" maxH={350} overflow="hidden">
-      <Text fontSize="xl" color="#646464" fontWeight="semibold" mb={2}>
+      <Text fontSize="xl" color="white" fontWeight="semibold" mb={2}>
         Moves
       </Text>
       <Box overflow="scroll">
