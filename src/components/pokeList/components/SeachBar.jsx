@@ -8,7 +8,7 @@ const SearchBar = () => {
         color="white"
         children={<i className="fas fa-search" />}
       />
-      <Input mx={2} />
+      <Input />
     </InputGroup>
   );
 };
