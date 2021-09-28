@@ -1,13 +1,23 @@
 import { useContext, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Image, Box, SimpleGrid, Flex, Button } from "@chakra-ui/react";
+import {
+  Image,
+  SimpleGrid,
+  Flex,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 import { PokeContext } from "../../context";
 import SearchBar from "./components/SeachBar";
+import PokeInfo from "../pokeInfo/PokeInfo";
+import NextButton from "./components/NextButton";
+import BackButton from "./components/BackButton";
 
 const PokeList = () => {
   const { setPokeId } = useContext(PokeContext);
   const [idRange, setIdRange] = useState({ start: 0 });
+  const { isOpen, onToggle, onClose } = useDisclosure();
 
   const GET_POKEMON_NAMES_AND_IDS = gql`
     query pokemonNamesAndIds($start: Int, $end: Int) {
@@ -18,11 +28,11 @@ const PokeList = () => {
     }
   `;
 
-  const { loading, error, data, refetch } = useQuery(
+  const { loading, error, data, fetchMore } = useQuery(
     GET_POKEMON_NAMES_AND_IDS,
     {
       variables: { start: idRange.start, end: 30 },
-      pollInterval: 500,
+      pollInterval: 100,
     }
   );
 
@@ -31,18 +41,17 @@ const PokeList = () => {
   return (
     <Flex flexDir="column">
       <SearchBar />
-      <SimpleGrid columns={6}>
+      <SimpleGrid columns={{ base: 5, md: 6 }} spacing={2} mt={4}>
         {data.pokemonNamesAndIds.map((element) => {
           return (
-            <Box
+            <Button
               key={element.id}
               bg="white"
-              opacity="80%"
-              h="64px"
-              w="64px"
-              borderRadius={"lg"}
-              margin={2}
-              onClick={() => setPokeId(element.id)}
+              style={styles.pokebox}
+              onClick={() => {
+                setPokeId(element.id);
+                onToggle();
+              }}
             >
               <Image
                 src={
@@ -51,36 +60,46 @@ const PokeList = () => {
                 }
                 opacity="100%"
               />
-            </Box>
+            </Button>
           );
         })}
       </SimpleGrid>
-      <Flex justifyContent="center">
-        <Button
-          mr={2}
+
+      <PokeInfo onClose={onClose} isOpen={isOpen} />
+
+      <Flex justifyContent="center" mt={4}>
+        <BackButton
           onClick={() => {
             if (idRange.start === 0) {
               return;
             } else {
               setIdRange({ start: idRange.start - 30 });
-              refetch();
             }
           }}
-        >
-          <i class="fas fa-caret-left"></i>
-        </Button>
-        <Button
-          ml={2}
+        />
+        <NextButton
           onClick={() => {
             setIdRange({ start: idRange.start + 30 });
-            refetch();
+            fetchMore({
+              variables: {
+                start: data.pokemonNamesAndIds.length,
+              },
+            });
           }}
-        >
-          <i class="fas fa-caret-right"></i>
-        </Button>
+        />
       </Flex>
     </Flex>
   );
+};
+
+const styles = {
+  pokebox: {
+    opacity: "80%",
+    height: "64px",
+    width: "64px",
+    borderRadius: "lg",
+    padding: "0",
+  },
 };
 
 export default PokeList;
