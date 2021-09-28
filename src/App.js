@@ -3,16 +3,14 @@ import { Flex } from "@chakra-ui/layout";
 
 import { Layout } from "./components/Layout";
 import PokeList from "./components/pokeList/PokeList";
-import PokeInfo from "./components/pokeInfo/PokeInfo";
 import { PokeProvider } from "./context";
 
 function App() {
   return (
     <Layout>
-      <Flex align="center" justify="space-between">
+      <Flex align="center" justify="center">
         <PokeProvider>
           <PokeList />
-          <PokeInfo />
         </PokeProvider>
       </Flex>
     </Layout>
