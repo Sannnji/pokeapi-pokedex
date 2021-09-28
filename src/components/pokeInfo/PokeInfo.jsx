@@ -1,16 +1,14 @@
 import { gql, useQuery } from "@apollo/client";
 import {
-  SimpleGrid,
-  Flex,
-  Image,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
 } from "@chakra-ui/react";
+import { Flex, Image } from "@chakra-ui/react";
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 import { useContext } from "react";
 import { PokeContext } from "../../context";
@@ -66,36 +64,40 @@ const PokeInfo = (props) => {
 
   return (
     <>
-      <Modal isOpen={props.isOpen} onClose={props.onClose} size="full">
+      <Modal isOpen={props.isOpen} onClose={props.onClose} size="xl">
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Dex Entry</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <SimpleGrid
-              flexDir="row"
-              bg="#F1F1F1"
-              borderRadius="lg"
-              color="#646464"
-              p={2}
-              spacing={2}
-              columns={2}
-              overflow="hidden"
-            >
-              <Flex flexDr="row" align="center">
-                <Image src={pokemon.sprites.front_default} />
-                <BasicSection
-                  id={pokemon.id}
-                  name={pokemon.name}
-                  type={pokemon.type}
-                />
-              </Flex>
-              <AbilitySection abilities={pokemon.abilities} />
-              <MoveSection moves={pokemon.moves} />
-              <StatSection stats={pokemon.stats} />
-            </SimpleGrid>
+            <Tabs>
+              <TabList justifyContent="center">
+                <Tab>Basic</Tab>
+                <Tab>Abilities</Tab>
+                <Tab>Moves</Tab>
+              </TabList>
+
+              <TabPanels>
+                <TabPanel>
+                  <Flex flexDir="column" alignItems="center">
+                    <Image src={pokemon.sprites.front_default} />
+                    <BasicSection
+                      id={pokemon.id}
+                      name={pokemon.name}
+                      type={pokemon.type}
+                    />
+                    <StatSection stats={pokemon.stats} />
+                  </Flex>
+                </TabPanel>
+                <TabPanel>
+                  <AbilitySection abilities={pokemon.abilities} />
+                </TabPanel>
+                <TabPanel>
+                  <MoveSection moves={pokemon.moves} />
+                </TabPanel>
+              </TabPanels>
+            </Tabs>
           </ModalBody>
-          <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
     </>
