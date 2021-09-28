@@ -2,8 +2,8 @@ import { Box, Text } from "@chakra-ui/react";
 
 export const Layout = (props) => {
   return (
-    <Box m={12} align="center">
-      <Text mb={12} mt={-8} ml={2} fontSize="xl" textAlign="left" color="white">
+    <Box m={{ base: 4, md: 12 }} align="center">
+      <Text my={8} fontSize="xl" color="white">
         PokeAPI PokeDex
       </Text>
       {props.children}
