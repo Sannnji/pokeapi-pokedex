@@ -53,6 +53,9 @@ function setTypeColor(type) {
     case "fairy":
       typeColor = "#EC8FE6";
       break;
+    case "fighting":
+      typeColor = "#CE4069";
+      break;
     default:
       break;
   }
