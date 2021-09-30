@@ -1,35 +1,33 @@
-import { Flex, Text, SimpleGrid } from "@chakra-ui/react";
+import { Flex, Text, Box } from "@chakra-ui/react";
 import { capitalize } from "../../../utils/capitalize";
+import { replaceHyphon } from "../../../utils/replaceHyphen";
 
-const AbilitySection = (props) => {
-  const abilities = props.abilities;
+const AbilitySection = ({ abilities }) => {
   return (
     <Flex flexDir="column" align="center" mt={4} minW="260px">
       <Text fontSize="xl" fontWeight="semibold" mb={2}>
         Abilities
       </Text>
-      <SimpleGrid
-        columns={2}
-        spacing={2}
-        align="center"
-        justify="center"
-      >
-        {abilities.map((ability) => {
-          return (
-            <Text
-              color="white"
-              bg="#646464"
-              fontSize="md"
-              boxShadow="lg"
-              borderRadius="full"
-              px={4}
-              mx={2}
-            >
-              {capitalize(ability.name)}
-            </Text>
-          );
-        })}
-      </SimpleGrid>
+
+      {abilities.map((ability) => {
+        return (
+          <Box
+            my={2}
+            bg="white"
+            color="#646464"
+            borderRadius="lg"
+            align="center"
+            boxShadow="lg"
+          >
+            <Box fontSize="lg" fontWeight="semibold" boxShadow="lg" py={1} >
+              <Text>
+                {capitalize(replaceHyphon(ability.name))}
+              </Text>
+            </Box>
+            <Text my={8}>{ability.effect}</Text>
+          </Box>
+        );
+      })}
     </Flex>
   );
 };

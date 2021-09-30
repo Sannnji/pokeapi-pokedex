@@ -33,6 +33,7 @@ const PokeInfo = (props) => {
         }
         abilities {
           name
+          effect
         }
         stats {
           hp
@@ -48,7 +49,6 @@ const PokeInfo = (props) => {
           power
           pp
           accuracy
-          damageClass
         }
       }
     }
