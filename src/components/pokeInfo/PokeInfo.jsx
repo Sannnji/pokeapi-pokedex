@@ -16,6 +16,7 @@ import AbilitySection from "./components/AbilitySection";
 import BasicSection from "./components/BasicSection";
 import MoveSection from "./components/MoveSection";
 import StatSection from "./components/StatSection";
+import Loading from "../Loading";
 
 const PokeInfo = (props) => {
   const { pokeId } = useContext(PokeContext);
@@ -58,7 +59,8 @@ const PokeInfo = (props) => {
     variables: { id: pokeId },
   });
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return <Loading bottom="40%" color="teal" emptyColor="gray.200" />;
   if (error) return <p>error: {error}</p>;
   const pokemon = data.pokemon;
 

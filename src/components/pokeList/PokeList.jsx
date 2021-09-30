@@ -13,6 +13,7 @@ import SearchBar from "./components/SeachBar";
 import PokeInfo from "../pokeInfo/PokeInfo";
 import NextButton from "./components/NextButton";
 import BackButton from "./components/BackButton";
+import Loading from "../Loading";
 
 const PokeList = () => {
   const { setPokeId } = useContext(PokeContext);
@@ -36,7 +37,7 @@ const PokeList = () => {
     }
   );
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
   if (error) return <p>error: {error}</p>;
   return (
     <Flex flexDir="column">
