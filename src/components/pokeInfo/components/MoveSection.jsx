@@ -28,8 +28,8 @@ const MoveSection = (props) => {
   };
 
   return (
-    <Flex flexDir="column" align="center" maxH={350} overflow="hidden">
-      <Text fontSize="xl" color="white" fontWeight="semibold" mb={2}>
+    <Flex flexDir="column" align="center" maxH="378px" overflow="hidden">
+      <Text fontSize="xl" fontWeight="semibold" mb={2}>
         Moves
       </Text>
       <Box overflow="scroll">
