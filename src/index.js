@@ -7,7 +7,7 @@ import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme";
 
 const client = new ApolloClient({
-  uri: "https://pokeapi-graphql-wrapper.herokuapp.com",
+  uri: "http://localhost:9000/",
   cache: new InMemoryCache(),
 });
 

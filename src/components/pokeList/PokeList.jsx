@@ -10,44 +10,42 @@ import {
 
 import { PokeContext } from "../../context";
 import SearchBar from "./components/SeachBar";
-import PokeInfo from "../pokeInfo/PokeInfo";
-import NextButton from "./components/NextButton";
-import BackButton from "./components/BackButton";
+import PokeEntry from "../pokeEntry/PokeEntry";
+import GenerationMenu from "./components/generationFilter";
 import Loading from "../Loading";
 
 const PokeList = () => {
   const { setPokeId } = useContext(PokeContext);
-  const [idRange, setIdRange] = useState({ start: 0 });
   const { isOpen, onToggle, onClose } = useDisclosure();
+  const [gen, setGen] = useState(1);
 
-  const GET_POKEMON_NAMES_AND_IDS = gql`
-    query pokemonNamesAndIds($start: Int, $end: Int) {
-      pokemonNamesAndIds(start: $start, end: $end) {
+  const GET_POKEMON_BY_GENERATION = gql`
+    query pokemonByGeneration($gen: Int) {
+      pokemonByGeneration(gen: $gen) {
         id
         name
       }
     }
   `;
 
-  const { loading, error, data, fetchMore } = useQuery(
-    GET_POKEMON_NAMES_AND_IDS,
-    {
-      variables: { start: idRange.start, end: 30 },
-      pollInterval: 100,
-    }
-  );
+  const { loading, error, data } = useQuery(GET_POKEMON_BY_GENERATION, {
+    variables: { gen: gen },
+  });
 
   if (loading) return <Loading />;
   if (error) return <p>error: {error}</p>;
   return (
-    <Flex flexDir="column">
+    <Flex flexDir="column" width={{ base: "50vw" }}>
       <SearchBar />
-      <SimpleGrid columns={{ base: 5, md: 6 }} spacing={2} mt={4}>
-        {data.pokemonNamesAndIds.map((element) => {
+      <GenerationMenu setGen={setGen} />
+
+      <SimpleGrid columns={{ base: 5, md: 6, lg: 7, xl: 9 }} mt={4}>
+        {data.pokemonByGeneration.map((element) => {
           return (
             <Button
               key={element.id}
               bg="white"
+              m={2}
               style={styles.pokebox}
               onClick={() => {
                 setPokeId(element.id);
@@ -66,29 +64,7 @@ const PokeList = () => {
         })}
       </SimpleGrid>
 
-      <PokeInfo onClose={onClose} isOpen={isOpen} />
-
-      <Flex justifyContent="center" mt={4}>
-        <BackButton
-          onClick={() => {
-            if (idRange.start === 0) {
-              return;
-            } else {
-              setIdRange({ start: idRange.start - 30 });
-            }
-          }}
-        />
-        <NextButton
-          onClick={() => {
-            setIdRange({ start: idRange.start + 30 });
-            fetchMore({
-              variables: {
-                start: data.pokemonNamesAndIds.length,
-              },
-            });
-          }}
-        />
-      </Flex>
+      <PokeEntry onClose={onClose} isOpen={isOpen} />
     </Flex>
   );
 };
