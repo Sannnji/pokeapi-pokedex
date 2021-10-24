@@ -8,7 +8,14 @@ import theme from "./theme";
 
 const client = new ApolloClient({
   uri: "http://localhost:9000/",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    resultCaching: true,
+    typePolicies: {
+      NameAndIds: {
+        keyFields: ["name"],
+      },
+    },
+  }),
 });
 
 ReactDOM.render(
