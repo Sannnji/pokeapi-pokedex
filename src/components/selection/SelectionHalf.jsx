@@ -9,11 +9,11 @@ export default function SelectionHalf() {
   const [gen, setGen] = useState(1);
 
   return (
-    <Flex width="100vh" align="center" flexDir="column">
+    <Flex width={{ base: "90vw", lg: "75vw" }} align="center" flexDir="column">
       <SearchBar />
       <GenerationMenu setGen={setGen} />
-      
-      <Box overflow="auto" height="75vh" width="100vh">
+
+      <Box overflow="auto" height={{ base: "65vh", lg: "75vh" }}>
         <PokeList gen={gen} />
       </Box>
     </Flex>

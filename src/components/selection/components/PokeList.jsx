@@ -25,7 +25,7 @@ const PokeList = ({ gen }) => {
   if (loading) return <Loading />;
   if (error) return <p>error: {error}</p>;
   return (
-    <Flex flexDir="column" width={{ base: "50vw" }}>
+    <Flex flexDir="column" >
       <SimpleGrid columns={{ base: 5, md: 6, lg: 7, xl: 9 }}>
         {data.pokemonByGeneration.map((element) => {
           return (
