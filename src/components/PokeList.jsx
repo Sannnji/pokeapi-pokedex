@@ -1,33 +1,40 @@
 import { useContext } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Image, SimpleGrid, Flex, Button } from "@chakra-ui/react";
+import {
+  Image,
+  SimpleGrid,
+  Flex,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 
-import { PokeContext } from "../../../context";
-
-import Loading from "../../Loading";
+import { PokeContext } from "../context";
+import Loading from "./Loading";
+import PokeEntry from "./pokeEntry/PokeEntry";
 
 const PokeList = ({ gen }) => {
+  const { isOpen, onToggle, onClose } = useDisclosure();
   const { setPokeId } = useContext(PokeContext);
 
-  const GET_POKEMON_BY_GENERATION = gql`
-    query pokemonByGeneration($gen: Int) {
-      pokemonByGeneration(gen: $gen) {
+  const GET_POKEMON_BY_FILTER = gql`
+    query pokemonByFilter($gen: Int) {
+      pokemonByFilter(gen: $gen) {
         id
         name
       }
     }
   `;
 
-  const { loading, error, data } = useQuery(GET_POKEMON_BY_GENERATION, {
+  const { loading, error, data } = useQuery(GET_POKEMON_BY_FILTER, {
     variables: { gen: gen },
   });
 
   if (loading) return <Loading />;
   if (error) return <p>error: {error}</p>;
   return (
-    <Flex flexDir="column" >
-      <SimpleGrid columns={{ base: 5, md: 6, lg: 9, xl: 12 }}>
-        {data.pokemonByGeneration.map((element) => {
+    <Flex flexDir="column">
+      <SimpleGrid columns={{ base: 5, md: 9, lg: 12, xl: 15 }}>
+        {data.pokemonByFilter.map((element) => {
           return (
             <Button
               key={element.id}
@@ -36,6 +43,7 @@ const PokeList = ({ gen }) => {
               style={styles.pokebox}
               onClick={() => {
                 setPokeId(element.id);
+                onToggle();
               }}
             >
               <Image
@@ -49,6 +57,7 @@ const PokeList = ({ gen }) => {
           );
         })}
       </SimpleGrid>
+      <PokeEntry isOpen={isOpen} onClose={onClose} />
     </Flex>
   );
 };

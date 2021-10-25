@@ -4,6 +4,7 @@ import App from "./App";
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { PokeProvider } from "./context";
 import theme from "./theme";
 
 const client = new ApolloClient({
@@ -21,8 +22,10 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ChakraProvider theme={theme}>
-      <App />
-      <ColorModeScript />
+      <PokeProvider>
+        <App />
+        <ColorModeScript />
+      </PokeProvider>
     </ChakraProvider>
   </ApolloProvider>,
   document.getElementById("root")

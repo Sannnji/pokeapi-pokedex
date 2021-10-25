@@ -1,21 +1,31 @@
-import React from "react";
-import { Flex } from "@chakra-ui/react";
+import { useState } from "react";
+import { Flex, Box } from "@chakra-ui/react";
 
 import { Layout } from "./components/Layout";
-import PokeEntry from "./components/pokeEntry/PokeEntry";
-import SelectionHalf from "./components/selection/SelectionHalf";
-import { PokeProvider } from "./context";
+
+import SearchBar from "./components/SeachBar";
+import GenerationFilter from "./components/filters/GenerationFilter";
+import TypeFilter from "./components/filters/TypeFilter";
+import PokeList from "./components/PokeList";
 
 function App() {
+  const [gen, setGen] = useState(1);
+
   return (
     <Layout>
-      <PokeProvider>
-        <Flex flexDir={{ base: "column", lg: "row" }}>
-          <SelectionHalf />
+      <Flex align="center" flexDir="column">
+        <Box>
+          <SearchBar />
+          <Flex my={2} >
+            <GenerationFilter setGen={setGen} />
+            <TypeFilter />
+          </Flex>
 
-          <PokeEntry />
-        </Flex>
-      </PokeProvider>
+          <Box overflow="auto" height="75vh">
+            <PokeList gen={gen} />
+          </Box>
+        </Box>
+      </Flex>
     </Layout>
   );
 }

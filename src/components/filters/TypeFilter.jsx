@@ -1,6 +1,8 @@
 import { Select } from "@chakra-ui/react";
 import { useQuery, gql } from "@apollo/client";
 
+import Loading from "../Loading";
+
 const GET_TYPES = gql`
   query types {
     types {
@@ -13,11 +15,11 @@ const GET_TYPES = gql`
 export default function TypeFilter() {
   const { loading, error, data } = useQuery(GET_TYPES);
 
-  if (loading) return "...loading";
+  if (loading) return <Loading />;
   if (error) return `${error}`;
 
   return (
-    <Select variant="unstyled">
+    <Select width="150px" ml={4}>
       {data.types.map((type) => {
         return <option>{type.name}</option>;
       })}

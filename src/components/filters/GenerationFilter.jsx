@@ -1,7 +1,7 @@
 import { Select } from "@chakra-ui/react";
 import { gql, useQuery } from "@apollo/client";
 
-import Loading from "../../Loading";
+import Loading from "../Loading";
 
 const GET_GENERATIONS = gql`
   query generations {
@@ -19,7 +19,7 @@ function GenerationFilter({ setGen }) {
   if (error) return <p>error: {error}</p>;
 
   return (
-    <Select variant="unstyled">
+    <Select width="150px">
       {data.generations.map((gen) => {
         return <option onClick={() => setGen(gen.id)}>{gen.name}</option>;
       })}
