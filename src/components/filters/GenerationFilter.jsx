@@ -2,6 +2,8 @@ import { Select } from "@chakra-ui/react";
 import { gql, useQuery } from "@apollo/client";
 
 import Loading from "../Loading";
+import { capitalizeGeneration } from "../../utils/capitalize";
+import { replaceHyphon } from "../../utils/replaceHyphen";
 
 const GET_GENERATIONS = gql`
   query generations {
@@ -21,7 +23,11 @@ function GenerationFilter({ setGen }) {
   return (
     <Select width="150px">
       {data.generations.map((gen) => {
-        return <option onClick={() => setGen(gen.id)}>{gen.name}</option>;
+        return (
+          <option onClick={() => setGen(gen.id)}>
+            {capitalizeGeneration(replaceHyphon(gen.name))}
+          </option>
+        );
       })}
     </Select>
   );
