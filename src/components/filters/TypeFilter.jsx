@@ -24,9 +24,9 @@ export default function TypeFilter({ setType }) {
 
   return (
     <Select
-      width="150px"
-      ml={4}
+      ml={{ base: 0, lg: 4 }}
       bg={typeColor}
+      width={{ base: "100%", lg: "150px" }}
       _focus={{ outline: "none", boxShadow: "none" }}
     >
       <option
@@ -35,7 +35,7 @@ export default function TypeFilter({ setType }) {
           setColor("#1A202C");
         }}
       >
-        None
+        No Type
       </option>
       {data.types.map((type) => {
         return (

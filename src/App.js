@@ -16,13 +16,18 @@ function App() {
     <Layout>
       <Flex align="center" flexDir="column">
         <Box width="100%">
-          <SearchBar />
-          <Flex my={2}>
-            <GenerationFilter setGen={setGen} />
-            <TypeFilter setType={setType} />
+          <Flex my={3} flexDir={{ base: "column", lg: "row" }}>
+            <SearchBar />
+            <Flex
+              mt={{ base: 4, lg: 0 }}
+              justifyContent={{ base: "center", lg: "normal" }}
+            >
+              <GenerationFilter setGen={setGen} />
+              <TypeFilter setType={setType} />
+            </Flex>
           </Flex>
 
-          <Box overflow="auto" height="75vh">
+          <Box overflow="auto" height="80vh">
             <PokeList gen={gen} type={type} />
           </Box>
         </Box>
