@@ -32,7 +32,7 @@ const PokeList = ({ gen, type }) => {
   if (loading) return <Loading />;
   if (error) return <p>error: {error}</p>;
   return (
-    <Flex flexDir="column">
+    <Flex flexDir="column" align={{ base: "center", lg: "normal" }}>
       <SimpleGrid columns={{ base: 5, md: 9, lg: 12, xl: 15 }}>
         {data.pokemonByFilter.map((element) => {
           return (

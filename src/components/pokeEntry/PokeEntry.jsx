@@ -88,7 +88,7 @@ const PokeEntry = (props) => {
 
             <TabPanels>
               <TabPanel>
-                <Flex flexDir="column" alignItems="center">
+                <Flex mt={4} flexDir="column" alignItems="center">
                   <Image src={pokemon.sprites.front_default} />
                   <BasicSection
                     id={pokemon.id}

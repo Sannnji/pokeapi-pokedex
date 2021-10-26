@@ -15,24 +15,26 @@ const MoveSection = (props) => {
         align="center"
         px={4}
         py={2}
-        my={2}
+        my={4}
         mx="auto"
         borderRadius="lg"
         bg="white"
       >
         <TypeBanner typeName={props.type} typeColor={props.typeColor} my={2} />
-        <Text color="#646464" mx={1}>{props.name}</Text>
+        <Text color="#646464" mx={1}>
+          {props.name}
+        </Text>
         <Text>{props.power}</Text>
       </Flex>
     );
   };
 
   return (
-    <Flex flexDir="column" align="center" maxH="378px" overflow="hidden">
-      <Text fontSize="xl" fontWeight="semibold" mb={2}>
+    <Flex maxH="80vh" flexDir="column" align="center" overflow="hidden">
+      <Text fontSize="xl" fontWeight="semibold" mt={4} mb={2}>
         Moves
       </Text>
-      <Box overflow="scroll">
+      <Box width="100%" px={8} overflow="auto">
         {moves.map((move) => {
           if (move) {
             return (
