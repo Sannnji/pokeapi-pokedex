@@ -21,7 +21,7 @@ function GenerationFilter({ setGen }) {
   if (error) return <p>error: {error}</p>;
 
   return (
-    <Select width="150px" _focus={{ outline: "none", boxShadow: "none" }}>
+    <Select bg="#1A202C" width="150px" _focus={{ outline: "none", boxShadow: "none" }}>
       {data.generations.map((gen) => {
         return (
           <option onClick={() => setGen(gen.id)}>
