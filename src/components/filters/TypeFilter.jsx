@@ -23,8 +23,20 @@ export default function TypeFilter({ setType }) {
   if (error) return `${error}`;
 
   return (
-    <Select width="150px" ml={4} bg={typeColor}>
-      <option onClick={() => setType(null)}>None</option>
+    <Select
+      width="150px"
+      ml={4}
+      bg={typeColor}
+      _focus={{ outline: "none", boxShadow: "none" }}
+    >
+      <option
+        onClick={() => {
+          setType(null);
+          setColor("#1A202C");
+        }}
+      >
+        None
+      </option>
       {data.types.map((type) => {
         return (
           <option
