@@ -15,7 +15,7 @@ function App() {
   return (
     <Layout>
       <Flex align="center" flexDir="column">
-        <Box>
+        <Box width="100%">
           <SearchBar />
           <Flex my={2}>
             <GenerationFilter setGen={setGen} />
