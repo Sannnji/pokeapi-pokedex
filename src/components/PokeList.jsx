@@ -12,13 +12,13 @@ import { PokeContext } from "../context";
 import Loading from "./Loading";
 import PokeEntry from "./pokeEntry/PokeEntry";
 
-const PokeList = ({ gen }) => {
+const PokeList = ({ gen, type }) => {
   const { isOpen, onToggle, onClose } = useDisclosure();
   const { setPokeId } = useContext(PokeContext);
 
   const GET_POKEMON_BY_FILTER = gql`
-    query pokemonByFilter($gen: Int) {
-      pokemonByFilter(gen: $gen) {
+    query pokemonByFilter($gen: Int, $type: String) {
+      pokemonByFilter(gen: $gen, type: $type) {
         id
         name
       }
@@ -26,7 +26,7 @@ const PokeList = ({ gen }) => {
   `;
 
   const { loading, error, data } = useQuery(GET_POKEMON_BY_FILTER, {
-    variables: { gen: gen },
+    variables: { gen: gen, type: type },
   });
 
   if (loading) return <Loading />;
