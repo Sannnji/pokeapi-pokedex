@@ -14,4 +14,13 @@ const capitalize = (string) => {
   return capitalized;
 };
 
-module.exports = { capitalize };
+// turn gen i => Gen I
+const capitalizeGeneration = (string) => {
+  var words = string.split(" ");
+
+  return (
+    words[0][0].toUpperCase() + words[0].slice(1) + " " + words[1].toUpperCase()
+  );
+};
+
+module.exports = { capitalize, capitalizeGeneration };
