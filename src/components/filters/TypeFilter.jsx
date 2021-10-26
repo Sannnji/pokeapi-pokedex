@@ -16,7 +16,7 @@ const GET_TYPES = gql`
 `;
 
 export default function TypeFilter({ setType }) {
-  const [typeColor, setColor] = useState(null);
+  const [typeColor, setColor] = useState("#1A202C");
   const { loading, error, data } = useQuery(GET_TYPES);
 
   if (loading) return <Loading />;
