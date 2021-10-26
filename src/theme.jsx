@@ -9,6 +9,13 @@ const theme = extendTheme({
       },
     },
   },
+  components: {
+    Button: {
+      baseStyle: {
+        _focus: { outline: "none", boxShadow: "none" },
+      },
+    },
+  },
 });
 
 export default theme;

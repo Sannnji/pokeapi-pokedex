@@ -74,14 +74,16 @@ const PokeEntry = (props) => {
     >
       <DrawerOverlay />
       <DrawerContent>
-        <DrawerCloseButton />
+        <DrawerCloseButton _focus={{ outline: "none", boxShadow: "none" }} />
         <DrawerHeader />
         <DrawerBody>
           <Tabs>
             <TabList justifyContent="center">
-              <Tab>Basic</Tab>
-              <Tab>Abilities</Tab>
-              <Tab>Moves</Tab>
+              <Tab _focus={{ outline: "none", boxShadow: "none" }}>Basic</Tab>
+              <Tab _focus={{ outline: "none", boxShadow: "none" }}>
+                Abilities
+              </Tab>
+              <Tab _focus={{ outline: "none", boxShadow: "none" }}>Moves</Tab>
             </TabList>
 
             <TabPanels>
