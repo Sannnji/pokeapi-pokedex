@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Image } from "@chakra-ui/react";
 
 import { capitalize } from "../../../utils/capitalize";
 import { setTypeColor } from "../../../utils/setTypeColor";
@@ -20,6 +20,7 @@ const BasicSection = (props) => {
 
   return (
     <Flex mt={4} flexDir="column" align="center">
+      <Image src={props.image} />
       <Flex flexDir="row" ml={1}>
         <IdWithZeros />
         <Text ml={2}>{capitalize(props.name)}</Text>

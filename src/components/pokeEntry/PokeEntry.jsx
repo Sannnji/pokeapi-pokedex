@@ -8,7 +8,7 @@ import {
   DrawerCloseButton,
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import { Flex, Image, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, useBreakpointValue } from "@chakra-ui/react";
 
 import { useContext } from "react";
 import { PokeContext } from "../../context";
@@ -17,6 +17,7 @@ import BasicSection from "./components/BasicSection";
 import MoveSection from "./components/MoveSection";
 import StatSection from "./components/StatSection";
 import Loading from "../Loading";
+import EvolutionSection from "./components/EvolutionSection";
 
 const GET_POKEMON = gql`
   query pokemon($id: Int!) {
@@ -47,6 +48,68 @@ const GET_POKEMON = gql`
         power
         pp
         accuracy
+      }
+
+      evolvesFrom {
+        id
+        name
+        sprites {
+          front_default
+        }
+        type {
+          name
+        }
+        evolvesFrom {
+          id
+          name
+          sprites {
+            front_default
+          }
+          type {
+            name
+          }
+        }
+        evolvesTo {
+          id
+          name
+          sprites {
+            front_default
+          }
+          type {
+            name
+          }
+        }
+      }
+
+      evolvesTo {
+        id
+        name
+        sprites {
+          front_default
+        }
+        type {
+          name
+        }
+        evolvesFrom {
+          id
+          name
+          sprites {
+            front_default
+          }
+          type {
+            name
+          }
+        }
+        evolvesTo {
+          id
+          name
+          sprites {
+            front_default
+          }
+          type {
+            name
+          }
+        }
       }
     }
   }
@@ -89,13 +152,18 @@ const PokeEntry = (props) => {
             <TabPanels>
               <TabPanel>
                 <Flex mt={4} flexDir="column" alignItems="center">
-                  <Image src={pokemon.sprites.front_default} />
                   <BasicSection
                     id={pokemon.id}
                     name={pokemon.name}
                     type={pokemon.type}
+                    image={pokemon.sprites.front_default}
                   />
                   <StatSection stats={pokemon.stats} />
+                  <EvolutionSection
+                    currentPoke={pokemon.name}
+                    evolvesFrom={pokemon.evolvesFrom}
+                    evolvesTo={pokemon.evolvesTo}
+                  />
                 </Flex>
               </TabPanel>
               <TabPanel>
