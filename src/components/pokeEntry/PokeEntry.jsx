@@ -122,7 +122,8 @@ const PokeEntry = (props) => {
     variables: { id: pokeId },
   });
 
-  const variant = useBreakpointValue({ base: "bottom", lg: "right" });
+  const drawerPosition = useBreakpointValue({ base: "bottom", lg: "right" });
+  const drawerSize = useBreakpointValue({ base: "full", lg: "xl" });
 
   if (loading) return <Loading />;
   if (error) return <p>error: {error}</p>;
@@ -132,8 +133,8 @@ const PokeEntry = (props) => {
     <Drawer
       isOpen={props.isOpen}
       onClose={props.onClose}
-      placement={variant}
-      size="xl"
+      placement={drawerPosition}
+      size={drawerSize}
     >
       <DrawerOverlay />
       <DrawerContent bg="#1A202C">
