@@ -14,25 +14,47 @@ const AbilitySection = ({ abilities }) => {
           return (
             <Box
               my={4}
-              width="100%"
-              bg="gray.200"
-              color="#646464"
-              borderRadius="lg"
-              align="center"
               boxShadow="lg"
+              borderBottomLeftRadius="lg"
+              borderBottomRightRadius="lg"
             >
               <Box
-                py={1}
-                bg="white"
-                fontSize="lg"
-                fontWeight="semibold"
+                p={2}
+                bg="gray.300"
                 borderTopLeftRadius="lg"
                 borderTopRightRadius="lg"
-                boxShadow="lg"
               >
-                <Text>{capitalize(replaceHyphon(ability.name))}</Text>
+                <Box
+                  py={1}
+                  border="2px"
+                  borderColor="white"
+                  fontSize="lg"
+                  fontWeight="semibold"
+                  borderTopLeftRadius="lg"
+                  borderTopRightRadius="lg"
+                  textAlign="center"
+                >
+                  <Text>{capitalize(replaceHyphon(ability.name))}</Text>
+                </Box>
               </Box>
-              <Text p={8}>{ability.effect}</Text>
+
+              <Box
+                p={2}
+                bg="gray.300"
+                borderBottomLeftRadius="lg"
+                borderBottomRightRadius="lg"
+              >
+                <Box
+                  width="100%"
+                  textAlign="center"
+                  border="2px"
+                  borderColor="white"
+                  borderBottomLeftRadius="lg"
+                  borderBottomRightRadius="lg"
+                >
+                  <Text p={8}>{ability.effect}</Text>
+                </Box>
+              </Box>
             </Box>
           );
         })}

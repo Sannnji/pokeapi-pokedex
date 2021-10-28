@@ -24,7 +24,7 @@ function GenerationFilter({ setGen }) {
     <Select
       ml={{ base: 0, lg: 4 }}
       mr={{ base: 4, lg: 0 }}
-      bg="#1A202C"
+      borderColor="#CBD5E0"
       width={{ base: "100%", lg: "150px" }}
       _focus={{ outline: "none", boxShadow: "none" }}
     >

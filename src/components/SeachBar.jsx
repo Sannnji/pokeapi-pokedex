@@ -2,7 +2,7 @@ import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 
 const SearchBar = () => {
   return (
-    <InputGroup>
+    <InputGroup borderColor="#CBD5E0">
       <InputLeftElement
         ml={2}
         color="white"

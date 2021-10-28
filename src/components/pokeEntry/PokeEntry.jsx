@@ -137,7 +137,7 @@ const PokeEntry = (props) => {
       size={drawerSize}
     >
       <DrawerOverlay />
-      <DrawerContent bg="#1A202C">
+      <DrawerContent>
         <DrawerCloseButton _focus={{ outline: "none", boxShadow: "none" }} />
         <DrawerHeader />
         <DrawerBody>

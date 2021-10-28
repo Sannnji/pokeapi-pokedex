@@ -1,4 +1,4 @@
-import { Flex, Text, Box } from "@chakra-ui/react";
+import { Flex, Text, Box, useColorModeValue } from "@chakra-ui/react";
 
 import { replaceHyphon } from "../../../utils/replaceHyphen";
 import { capitalize } from "../../../utils/capitalize";
@@ -9,6 +9,7 @@ const MoveSection = (props) => {
   const moves = props.moves;
 
   const MoveContainer = (props) => {
+    const bgColor = useColorModeValue("gray.200", "white");
     return (
       <Flex
         flexDir="row"
@@ -17,11 +18,11 @@ const MoveSection = (props) => {
         py={2}
         my={4}
         mx="auto"
+        bg={bgColor}
         borderRadius="lg"
-        bg="white"
       >
         <TypeBanner typeName={props.type} typeColor={props.typeColor} my={2} />
-        <Text color="#646464" mx={1}>
+        <Text mx={1}>
           {props.name}
         </Text>
         <Text>{props.power}</Text>

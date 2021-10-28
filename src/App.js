@@ -27,7 +27,14 @@ function App() {
             </Flex>
           </Flex>
 
-          <Box overflow="auto" height="80vh">
+          <Box
+            overflow="auto"
+            height="80vh"
+            border="1px"
+            borderColor="#CBD5E0"
+            borderRadius="lg"
+            p={4}
+          >
             <PokeList gen={gen} type={type} />
           </Box>
         </Box>

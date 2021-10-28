@@ -32,14 +32,13 @@ const PokeList = ({ gen, type }) => {
   if (loading) return <Loading />;
   if (error) return <p>error: {error}</p>;
   return (
-    <Flex flexDir="column" align={{ base: "center", lg: "normal" }}>
-      <SimpleGrid columns={{ base: 5, md: 9, lg: 12, xl: 15 }} spacing={2} >
+    <Flex flexDir="column" align={{ base: "center", lg: "space-evenly" }}>
+      <SimpleGrid columns={{ base: 5, md: 9, lg: 12, xl: 16 }} spacing={2}>
         {data.pokemonByFilter.map((element) => {
           return (
             <Button
               key={element.id}
-              bg="white"
-
+              bg="gray.200"
               style={styles.pokebox}
               onClick={() => {
                 setPokeId(element.id);
