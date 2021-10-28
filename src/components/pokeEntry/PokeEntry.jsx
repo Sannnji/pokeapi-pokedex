@@ -144,6 +144,9 @@ const PokeEntry = (props) => {
             <TabList justifyContent="center">
               <Tab _focus={{ outline: "none", boxShadow: "none" }}>Basic</Tab>
               <Tab _focus={{ outline: "none", boxShadow: "none" }}>
+                Evolution
+              </Tab>
+              <Tab _focus={{ outline: "none", boxShadow: "none" }}>
                 Abilities
               </Tab>
               <Tab _focus={{ outline: "none", boxShadow: "none" }}>Moves</Tab>
@@ -151,7 +154,7 @@ const PokeEntry = (props) => {
 
             <TabPanels>
               <TabPanel>
-                <Flex mt={4} flexDir="column" alignItems="center">
+                <Flex mt={4} justifyContent="space-evenly">
                   <BasicSection
                     id={pokemon.id}
                     name={pokemon.name}
@@ -159,8 +162,12 @@ const PokeEntry = (props) => {
                     image={pokemon.sprites.front_default}
                   />
                   <StatSection stats={pokemon.stats} />
+                </Flex>
+              </TabPanel>
+              <TabPanel>
+                <Flex mt={4} flexDir="column" alignItems="center">
                   <EvolutionSection
-                    currentPoke={pokemon.name}
+                    currentPoke={pokemon}
                     evolvesFrom={pokemon.evolvesFrom}
                     evolvesTo={pokemon.evolvesTo}
                   />
