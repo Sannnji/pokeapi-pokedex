@@ -1,6 +1,6 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/input";
 
-const SearchBar = () => {
+const SearchBar = ({ setSearchValue }) => {
   return (
     <InputGroup borderColor="#CBD5E0">
       <InputLeftElement
@@ -8,7 +8,7 @@ const SearchBar = () => {
         color="white"
         children={<i className="fas fa-search" />}
       />
-      <Input />
+      <Input onChange={(event) => setSearchValue(event.target.value)} />
     </InputGroup>
   );
 };

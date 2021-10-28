@@ -11,13 +11,14 @@ import TypeFilter from "./components/filters/TypeFilter";
 function App() {
   const [gen, setGen] = useState(1);
   const [type, setType] = useState(null);
+  const [searchValue, setSearchValue] = useState(null);
 
   return (
     <Layout>
       <Flex align="center" flexDir="column">
         <Box width="100%">
           <Flex my={3} flexDir={{ base: "column", lg: "row" }}>
-            <SearchBar />
+            <SearchBar setSearchValue={setSearchValue} />
             <Flex
               mt={{ base: 4, lg: 0 }}
               justifyContent={{ base: "center", lg: "normal" }}
@@ -35,7 +36,7 @@ function App() {
             borderRadius="lg"
             p={4}
           >
-            <PokeList gen={gen} type={type} />
+            <PokeList gen={gen} type={type} searchValue={searchValue} />
           </Box>
         </Box>
       </Flex>
