@@ -136,11 +136,11 @@ const PokeEntry = (props) => {
       size="xl"
     >
       <DrawerOverlay />
-      <DrawerContent>
+      <DrawerContent bg="#1A202C">
         <DrawerCloseButton _focus={{ outline: "none", boxShadow: "none" }} />
         <DrawerHeader />
         <DrawerBody>
-          <Tabs>
+          <Tabs colorScheme="pink">
             <TabList justifyContent="center">
               <Tab _focus={{ outline: "none", boxShadow: "none" }}>Basic</Tab>
               <Tab _focus={{ outline: "none", boxShadow: "none" }}>
