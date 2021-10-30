@@ -11,7 +11,8 @@ const TypeBanner = (props) => {
       align="center"
       boxShadow="lg"
       borderRadius="full"
-      width="100px"
+      minW="100px"
+      maxW="100px"
       {...props}
     >
       <Image

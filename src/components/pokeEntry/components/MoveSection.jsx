@@ -1,4 +1,11 @@
-import { Flex, Text, Box, useColorModeValue } from "@chakra-ui/react";
+import { Flex, Text, Box, Image, useColorModeValue } from "@chakra-ui/react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/react";
 
 import { replaceHyphon } from "../../../utils/replaceHyphen";
 import { capitalize } from "../../../utils/capitalize";
@@ -10,23 +17,45 @@ const MoveSection = (props) => {
 
   const MoveContainer = (props) => {
     const bgColor = useColorModeValue("gray.200", "white");
+
     return (
-      <Flex
-        flexDir="row"
-        align="center"
-        px={4}
-        py={2}
-        my={4}
-        mx="auto"
-        bg={bgColor}
-        borderRadius="lg"
-      >
-        <TypeBanner typeName={props.type} typeColor={props.typeColor} my={2} />
-        <Text mx={1}>
-          {props.name}
-        </Text>
-        <Text>{props.power}</Text>
-      </Flex>
+      <AccordionItem my={4} border={0} position="relative">
+        <AccordionButton p={0} _focus={{ outline: "none", boxShadow: "none" }}>
+          <Flex
+            px={4}
+            py={4}
+            bg={bgColor}
+            flexDir="row"
+            borderRadius="lg"
+            width="100%"
+          >
+            <TypeBanner typeName={props.type} typeColor={props.typeColor} />
+            <Text ml={8}>{props.name}</Text>
+          </Flex>
+          <AccordionIcon position="absolute" right={4} />
+        </AccordionButton>
+
+        <AccordionPanel py={4} px={4} display="flex">
+          <Flex flexDir="column" width="50vw">
+            <Text>Power: {props.power ? props.power : "-"}</Text>
+
+            <Text>Accuracy: {props.accuracy ? props.accuracy : "-"}</Text>
+          </Flex>
+
+          <Flex flexDir="column" width="50vw">
+            <Text>PP: {props.pp}</Text>
+
+            <Image
+              src={
+                process.env.PUBLIC_URL +
+                `/images/moveClass/${props.damage_class}.png`
+              }
+     
+              width="24px"
+            />
+          </Flex>
+        </AccordionPanel>
+      </AccordionItem>
     );
   };
 
@@ -35,19 +64,25 @@ const MoveSection = (props) => {
       <Text fontSize="xl" fontWeight="semibold" mt={4} mb={2}>
         Moves
       </Text>
+
       <Box width="100%" px={8} overflow="auto">
-        {moves.map((move) => {
-          if (move) {
-            return (
-              <MoveContainer
-                type={move.type}
-                typeColor={setTypeColor(move.type)}
-                name={capitalize(replaceHyphon(move.name))}
-                power={move.power}
-              />
-            );
-          } else return null;
-        })}
+        <Accordion allowToggle>
+          {moves.map((move) => {
+            if (move) {
+              return (
+                <MoveContainer
+                  type={move.type}
+                  typeColor={setTypeColor(move.type)}
+                  name={capitalize(replaceHyphon(move.name))}
+                  power={move.power}
+                  accuracy={move.accuracy}
+                  damage_class={move.damage_class}
+                  pp={move.pp}
+                />
+              );
+            } else return null;
+          })}
+        </Accordion>
       </Box>
     </Flex>
   );

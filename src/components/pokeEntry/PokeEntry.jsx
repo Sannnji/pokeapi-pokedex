@@ -48,6 +48,7 @@ const GET_POKEMON = gql`
         power
         pp
         accuracy
+        damage_class
       }
 
       evolvesFrom {
