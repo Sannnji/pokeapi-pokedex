@@ -3,23 +3,26 @@ import { Flex, Text, Box } from "@chakra-ui/react";
 const StatSection = (props) => {
   const stats = props.stats;
 
-  const StatName = (props) => {
-    return <Text fontWeight="semibold">{props.name}</Text>;
-  };
-
-  const StatBar = (props) => {
+  const StatRow = (props) => {
     return (
-      <Box bg="white" h={2} width="160px" align="left" ml={4} my={2}>
-        <Box bg="#95FFBC" width={`${(props.stat / 255) * 100}%`} h={2} />
-      </Box>
+      <Flex align="center" width="280px">
+        <Text fontWeight="semibold" width="25vw">
+          {props.name}
+        </Text>
+
+        <Box bg="white" width="85vw" align="left" ml={4} my={2}>
+          <Box bg="#95FFBC" width={`${(props.stat / 255) * 100}%`}>
+            <Text fontSize="x-small" fontWeight="bold" pl={1}>
+              {props.stat}
+            </Text>
+          </Box>
+        </Box>
+      </Flex>
     );
   };
-  
+
   return (
     <Flex flexDir="column" align="center">
-      <Text fontSize="xl" fontWeight="semibold" mb={2}>
-        Base Stats
-      </Text>
       <Flex
         flexDir="row"
         bg="#646464"
@@ -28,26 +31,13 @@ const StatSection = (props) => {
         p={4}
         align="center"
       >
-        <Flex
-          flexDir="column"
-          align="center"
-          h="100%"
-          justifyContent="space-between"
-        >
-          <StatName name="HP" />
-          <StatName name="ATK" />
-          <StatName name="DEF" />
-          <StatName name="SPATK" />
-          <StatName name="SPDEF" />
-          <StatName name="SPD" />
-        </Flex>
         <Flex flexDir="column" align="center">
-          <StatBar stat={stats.hp} />
-          <StatBar stat={stats.attack} />
-          <StatBar stat={stats.defense} />
-          <StatBar stat={stats.special_attack} />
-          <StatBar stat={stats.special_defense} />
-          <StatBar stat={stats.speed} />
+          <StatRow name={"HP"} stat={stats.hp} />
+          <StatRow name={"ATK"} stat={stats.attack} />
+          <StatRow name={"DEF"} stat={stats.defense} />
+          <StatRow name={"SPATK"} stat={stats.special_attack} />
+          <StatRow name={"SPDEF"} stat={stats.special_defense} />
+          <StatRow name={"SPD"} stat={stats.speed} />
         </Flex>
       </Flex>
     </Flex>

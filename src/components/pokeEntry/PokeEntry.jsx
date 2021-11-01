@@ -173,7 +173,11 @@ const PokeEntry = (props) => {
 
             <TabPanels>
               <TabPanel>
-                <Flex mt={4} justifyContent="space-evenly">
+                <Flex
+                  mt={4}
+                  flexDir={{ base: "column", lg: "row" }}
+                  justifyContent="space-evenly"
+                >
                   <BasicSection
                     id={pokemon.id}
                     name={pokemon.name}
@@ -183,13 +187,12 @@ const PokeEntry = (props) => {
                   <StatSection stats={pokemon.stats} />
                 </Flex>
               </TabPanel>
-              <TabPanel
-                width="100%"
-                flexDir={{ base: "column", lg: "row" }}
-                justifyContent="center"
-                overflow="auto"
-              >
-                <Flex flexDir="column" maxH="80vh" align="center">
+              <TabPanel width="100%" maxH="80vh" overflow="auto">
+                <Flex
+                  flexDir={{ base: "column", lg: "row" }}
+                  justifyContent="center"
+                  align="center"
+                >
                   <EvolutionSection
                     currentPoke={pokemon}
                     evolvesFrom={pokemon.evolvesFrom}
