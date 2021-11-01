@@ -1,5 +1,6 @@
 import { Box, Text, Flex } from "@chakra-ui/react";
 import ColorModeSwitcher from "./ColorModeSwitcher";
+import Footer from "./footer/Footer";
 
 export const Layout = (props) => {
   return (
@@ -12,6 +13,8 @@ export const Layout = (props) => {
       </Flex>
 
       {props.children}
+
+      <Footer />
     </Box>
   );
 };
