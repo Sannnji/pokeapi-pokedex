@@ -27,10 +27,13 @@ function GenerationFilter({ setGen }) {
       borderColor="#CBD5E0"
       width={{ base: "100%", lg: "150px" }}
       _focus={{ outline: "none", boxShadow: "none" }}
+      onChange={(event) => {
+        setGen(parseInt(event.target.value));
+      }}
     >
-      {data.generations.map((gen) => {
+      {data.generations.map((gen, index) => {
         return (
-          <option onClick={() => setGen(gen.id)}>
+          <option key={index} value={gen.id}>
             {capitalizeGeneration(replaceHyphon(gen.name))}
           </option>
         );

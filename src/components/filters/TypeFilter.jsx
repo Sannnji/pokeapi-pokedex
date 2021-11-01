@@ -32,25 +32,15 @@ export default function TypeFilter({ setType }) {
       color={typeColor != null ? "white" : null}
       width={{ base: "100%", lg: "150px" }}
       _focus={{ outline: "none", boxShadow: "none" }}
+      onChange={(event) => {
+        setType(event.target.value.toLowerCase());
+        setColor(setTypeColor(event.target.value.toLowerCase()));
+      }}
     >
-      <option
-        style={{ color: textColor }}
-        onClick={() => {
-          setType(null);
-          setColor(null);
-        }}
-      >
-        No Type
-      </option>
-      {data.types.map((type) => {
+      <option style={{ color: textColor }}>No Type</option>
+      {data.types.map((type, index) => {
         return (
-          <option
-            style={{ color: textColor }}
-            onClick={() => {
-              setType(type.name);
-              setColor(setTypeColor(type.name));
-            }}
-          >
+          <option key={index} style={{ color: textColor }}>
             {capitalize(type.name)}
           </option>
         );
