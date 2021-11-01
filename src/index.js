@@ -8,8 +8,8 @@ import { PokeProvider } from "./context";
 import theme from "./theme";
 
 const client = new ApolloClient({
-  uri: "http://localhost:9000/",
-  // uri: "https://pokeapi-graphql-wrapper.herokuapp.com/",
+  // uri: "http://localhost:9000/",
+  uri: "https://pokeapi-graphql-wrapper.herokuapp.com/",
   cache: new InMemoryCache({
     resultCaching: true,
     typePolicies: {
