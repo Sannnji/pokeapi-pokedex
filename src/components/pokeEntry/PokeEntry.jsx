@@ -50,6 +50,8 @@ const GET_POKEMON = gql`
         accuracy
         damage_class
       }
+      evolutionRequirement
+      evolutionTrigger
 
       evolvesFrom {
         id
@@ -60,6 +62,9 @@ const GET_POKEMON = gql`
         type {
           name
         }
+        evolutionRequirement
+        evolutionTrigger
+
         evolvesFrom {
           id
           name
@@ -69,7 +74,10 @@ const GET_POKEMON = gql`
           type {
             name
           }
+          evolutionRequirement
+          evolutionTrigger
         }
+
         evolvesTo {
           id
           name
@@ -79,6 +87,8 @@ const GET_POKEMON = gql`
           type {
             name
           }
+          evolutionRequirement
+          evolutionTrigger
         }
       }
 
@@ -91,6 +101,9 @@ const GET_POKEMON = gql`
         type {
           name
         }
+        evolutionRequirement
+        evolutionTrigger
+
         evolvesFrom {
           id
           name
@@ -100,7 +113,10 @@ const GET_POKEMON = gql`
           type {
             name
           }
+          evolutionRequirement
+          evolutionTrigger
         }
+
         evolvesTo {
           id
           name
@@ -110,6 +126,8 @@ const GET_POKEMON = gql`
           type {
             name
           }
+          evolutionRequirement
+          evolutionTrigger
         }
       }
     }
@@ -124,7 +142,6 @@ const PokeEntry = (props) => {
   });
 
   const drawerPosition = useBreakpointValue({ base: "bottom", lg: "right" });
-  const drawerSize = useBreakpointValue({ base: "full", lg: "xl" });
 
   if (loading) return <Loading />;
   if (error) return <p>error: {error}</p>;
@@ -135,7 +152,7 @@ const PokeEntry = (props) => {
       isOpen={props.isOpen}
       onClose={props.onClose}
       placement={drawerPosition}
-      size={drawerSize}
+      size="full"
     >
       <DrawerOverlay />
       <DrawerContent>
@@ -167,7 +184,7 @@ const PokeEntry = (props) => {
                 </Flex>
               </TabPanel>
               <TabPanel>
-                <Flex mt={4} flexDir="column" alignItems="center">
+                <Flex flexDir="column" align="center">
                   <EvolutionSection
                     currentPoke={pokemon}
                     evolvesFrom={pokemon.evolvesFrom}

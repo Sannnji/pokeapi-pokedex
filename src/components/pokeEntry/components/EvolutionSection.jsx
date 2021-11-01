@@ -1,15 +1,25 @@
-import { Flex, VStack } from "@chakra-ui/react";
+import { Flex, Text, useBreakpointValue } from "@chakra-ui/react";
 import BasicSection from "./BasicSection";
+
+import { capitalize } from "../../../utils/capitalize";
+import { replaceHyphon } from "../../../utils/replaceHyphen";
+
+import { FaArrowRight } from "react-icons/fa";
 
 export default function EvolutionSection({
   evolvesFrom,
   evolvesTo,
   currentPoke,
 }) {
+  const rotate = useBreakpointValue({
+    base: "rotate(90deg)",
+    lg: "rotate(0deg)",
+  });
+
   // returns first evolution if currentPoke is a third evolution poke
   let firstEvol = evolvesFrom
     ? evolvesFrom.evolvesFrom
-      ? evolvesFrom.evolvesFrom.name
+      ? evolvesFrom.evolvesFrom
       : ""
     : "";
 
@@ -18,139 +28,115 @@ export default function EvolutionSection({
     ? evolvesTo.map((pokemon) => pokemon.evolvesTo)[0] != null
       ? evolvesTo
           .map((pokemon) => pokemon.evolvesTo)[0]
-          .map((pokemon) => pokemon.name)
+          .map((pokemon) => pokemon)
       : ""
     : "";
+
+  const EvolutionDetails = ({ pokemon }) => {
+    if (pokemon.evolutionRequirement && pokemon.evolutionRequirement) {
+      return (
+        <Flex flexDir="column" width="125px" align="center" fontSize="2xl">
+          <Text fontSize="xs">
+            {pokemon.evolutionTrigger
+              ? capitalize(replaceHyphon(pokemon.evolutionTrigger))
+              : null}
+          </Text>
+          <Text fontSize="xs">{pokemon.evolutionRequirement}</Text>
+
+          <FaArrowRight style={{ transform: rotate }} />
+        </Flex>
+      );
+    } else {
+      return null;
+    }
+  };
+
+  const PokeWithEvolDetails = ({ pokemon, props }) => {
+    return (
+      <Flex
+        align="center"
+        flexDir={{ base: "column", lg: "row" }}
+        my={{ base: 4, lg: 0 }}
+        {...props}
+      >
+        <EvolutionDetails pokemon={pokemon} />
+
+        <BasicSection
+          id={pokemon.id}
+          name={pokemon.name}
+          type={pokemon.type}
+          image={pokemon.sprites.front_default}
+        />
+      </Flex>
+    );
+  };
 
   // if first Evol exists, currentPoke must be third evol
   if (firstEvol) {
     return (
-      <Flex>
+      <Flex
+        maxH="80vh"
+        flexDir={{ base: "column", lg: "row" }}
+        align="center"
+        overflow="auto"
+      >
         <Flex>
-          {evolvesFrom ? (
-            evolvesFrom.evolvesFrom ? (
-              <BasicSection
-                id={evolvesFrom.evolvesFrom.id}
-                name={evolvesFrom.evolvesFrom.name}
-                type={evolvesFrom.evolvesFrom.type}
-                image={evolvesFrom.evolvesFrom.sprites.front_default}
-              />
-            ) : (
-              ""
-            )
-          ) : (
-            ""
-          )}
+          {firstEvol ? <PokeWithEvolDetails pokemon={firstEvol} /> : ""}
         </Flex>
 
-        <Flex mx={2}>
-          {evolvesFrom ? (
-            <BasicSection
-              id={evolvesFrom.id}
-              name={evolvesFrom.name}
-              type={evolvesFrom.type}
-              image={evolvesFrom.sprites.front_default}
-            />
-          ) : (
-            ""
-          )}
-        </Flex>
+        {evolvesFrom ? <PokeWithEvolDetails pokemon={evolvesFrom} /> : ""}
 
-        <Flex>
-          {
-            <BasicSection
-              id={currentPoke.id}
-              name={currentPoke.name}
-              type={currentPoke.type}
-              image={currentPoke.sprites.front_default}
-            />
-          }
-        </Flex>
+        <PokeWithEvolDetails pokemon={currentPoke} />
       </Flex>
     );
     // if third Evol exists, currentPoke must be first evol
   } else if (thirdEvol) {
     return (
-      <Flex align="center">
+      <Flex
+        maxH="80vh"
+        flexDir={{ base: "column", lg: "row" }}
+        align="center"
+        overflow="auto"
+      >
+        <PokeWithEvolDetails pokemon={currentPoke} />
+
         <Flex>
-          <BasicSection
-            id={currentPoke.id}
-            name={currentPoke.name}
-            type={currentPoke.type}
-            image={currentPoke.sprites.front_default}
-          />
+          {evolvesTo
+            ? evolvesTo.map((pokemon, index) => {
+                return <PokeWithEvolDetails key={index} pokemon={pokemon} />;
+              })
+            : ""}
         </Flex>
 
-        <VStack>
-          {evolvesTo
-            ? evolvesTo.map((pokemon, index) => (
-                <BasicSection
-                  key={index}
-                  id={pokemon.id}
-                  name={pokemon.name}
-                  type={pokemon.type}
-                  image={pokemon.sprites.front_default}
-                />
-              ))
+        <Flex flexDir={{ base: "row", lg: "column" }}>
+          {thirdEvol
+            ? thirdEvol.map((pokemon, index) => {
+                return <PokeWithEvolDetails key={index} pokemon={pokemon} />;
+              })
             : ""}
-        </VStack>
-
-        <VStack>
-          {evolvesTo
-            ? evolvesTo.map((pokemon) => pokemon.evolvesTo)[0] != null
-              ? evolvesTo
-                  .map((pokemon) => pokemon.evolvesTo)[0]
-                  .map((pokemon, index) => (
-                    <BasicSection
-                      key={index}
-                      id={pokemon.id}
-                      name={pokemon.name}
-                      type={pokemon.type}
-                      image={pokemon.sprites.front_default}
-                    />
-                  ))
-              : ""
-            : ""}
-        </VStack>
+        </Flex>
       </Flex>
     );
     // otherwise currentPoke must be second evol
   } else {
     return (
-      <Flex align="center">
-        <Flex>
-          {evolvesFrom ? (
-            <BasicSection
-              id={evolvesFrom.id}
-              name={evolvesFrom.name}
-              type={evolvesFrom.type}
-              image={evolvesFrom.sprites.front_default}
-            />
-          ) : (
-            ""
-          )}
-        </Flex>
-        <Flex mx={2}>
-          <BasicSection
-            id={currentPoke.id}
-            name={currentPoke.name}
-            type={currentPoke.type}
-            image={currentPoke.sprites.front_default}
-          />
-        </Flex>
-        <VStack>
+      <Flex
+        maxH="80vh"
+        flexDir={{ base: "column", lg: "row" }}
+        align="center"
+        overflow="auto"
+      >
+        {evolvesFrom ? <PokeWithEvolDetails pokemon={evolvesFrom} /> : ""}
+
+        <PokeWithEvolDetails pokemon={currentPoke} />
+
+        <Flex flexDir={{ base: "row", lg: "column" }}>
           {evolvesTo
-            ? evolvesTo.map((pokemon, index) => (
-                <BasicSection
-                  key={index}
-                  id={pokemon.id}
-                  name={pokemon.name}
-                  type={pokemon.type}
-                  image={pokemon.sprites.front_default}
-                />
-              ))
+            ? evolvesTo.map((pokemon, index) => {
+                return <PokeWithEvolDetails key={index} pokemon={pokemon} />;
+              })
             : ""}
-        </VStack>
+        </Flex>
       </Flex>
     );
   }
