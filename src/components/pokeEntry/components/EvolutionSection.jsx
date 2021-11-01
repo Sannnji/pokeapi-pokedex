@@ -74,12 +74,7 @@ export default function EvolutionSection({
   // if first Evol exists, currentPoke must be third evol
   if (firstEvol) {
     return (
-      <Flex
-        maxH="80vh"
-        flexDir={{ base: "column", lg: "row" }}
-        align="center"
-        overflow="auto"
-      >
+      <>
         <Flex>
           {firstEvol ? <PokeWithEvolDetails pokemon={firstEvol} /> : ""}
         </Flex>
@@ -87,17 +82,12 @@ export default function EvolutionSection({
         {evolvesFrom ? <PokeWithEvolDetails pokemon={evolvesFrom} /> : ""}
 
         <PokeWithEvolDetails pokemon={currentPoke} />
-      </Flex>
+      </>
     );
     // if third Evol exists, currentPoke must be first evol
   } else if (thirdEvol) {
     return (
-      <Flex
-        maxH="80vh"
-        flexDir={{ base: "column", lg: "row" }}
-        align="center"
-        overflow="auto"
-      >
+      <>
         <PokeWithEvolDetails pokemon={currentPoke} />
 
         <Flex>
@@ -115,17 +105,12 @@ export default function EvolutionSection({
               })
             : ""}
         </Flex>
-      </Flex>
+      </>
     );
     // otherwise currentPoke must be second evol
   } else {
     return (
-      <Flex
-        maxH="80vh"
-        flexDir={{ base: "column", lg: "row" }}
-        align="center"
-        overflow="auto"
-      >
+      <>
         {evolvesFrom ? <PokeWithEvolDetails pokemon={evolvesFrom} /> : ""}
 
         <PokeWithEvolDetails pokemon={currentPoke} />
@@ -137,7 +122,7 @@ export default function EvolutionSection({
               })
             : ""}
         </Flex>
-      </Flex>
+      </>
     );
   }
 }

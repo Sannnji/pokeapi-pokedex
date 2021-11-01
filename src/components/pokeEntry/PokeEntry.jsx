@@ -184,7 +184,13 @@ const PokeEntry = (props) => {
                 </Flex>
               </TabPanel>
               <TabPanel>
-                <Flex flexDir="column" align="center">
+                <Flex
+                  maxH="80vh"
+                  width="100%"
+                  flexDir={{ base: "column", lg: "row" }}
+                  justifyContent="center"
+                  overflow="auto"
+                >
                   <EvolutionSection
                     currentPoke={pokemon}
                     evolvesFrom={pokemon.evolvesFrom}
