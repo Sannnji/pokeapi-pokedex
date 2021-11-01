@@ -49,6 +49,7 @@ const PokeList = ({ gen, type, searchValue }) => {
 
   const { loading, error, data } = useQuery(GET_POKEMON_BY_FILTER, {
     variables: { gen: gen, type: type },
+    pollInterval: 500,
   });
 
   if (loading) return <Loading />;
