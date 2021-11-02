@@ -5,7 +5,7 @@ const StatSection = (props) => {
 
   const StatRow = (props) => {
     return (
-      <Flex align="center" width="280px">
+      <Flex align="center" maxW="350px">
         <Text fontWeight="semibold" width="25vw">
           {props.name}
         </Text>
@@ -22,7 +22,7 @@ const StatSection = (props) => {
   };
 
   return (
-    <Flex flexDir="column" align="center">
+
       <Flex
         flexDir="row"
         bg="#646464"
@@ -40,7 +40,7 @@ const StatSection = (props) => {
           <StatRow name={"SPD"} stat={stats.speed} />
         </Flex>
       </Flex>
-    </Flex>
+
   );
 };
 
