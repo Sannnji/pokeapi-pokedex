@@ -50,7 +50,6 @@ const MoveSection = (props) => {
                 process.env.PUBLIC_URL +
                 `/images/moveClass/${props.damage_class}.png`
               }
-     
               width="24px"
             />
           </Flex>
@@ -65,7 +64,7 @@ const MoveSection = (props) => {
         Moves
       </Text>
 
-      <Box width="100%" px={8} overflow="auto">
+      <Box width="100%" px={{ base: 2, lg: 4 }} overflow="auto">
         <Accordion allowToggle>
           {moves.map((move) => {
             if (move) {

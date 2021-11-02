@@ -9,7 +9,7 @@ const AbilitySection = ({ abilities }) => {
         Abilities
       </Text>
 
-      <Box width="100%" px={{ base: 4, lg: 8 }} overflow="auto">
+      <Box width="100%" px={{ base: 2, lg: 4 }} overflow="auto">
         {abilities.map((ability) => {
           return (
             <Box
