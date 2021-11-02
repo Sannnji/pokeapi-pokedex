@@ -33,7 +33,7 @@ export default function EvolutionSection({
     : "";
 
   const EvolutionDetails = ({ pokemon }) => {
-    if (pokemon.evolutionRequirement && pokemon.evolutionRequirement) {
+    if (pokemon.evolutionRequirement || pokemon.evolutionTrigger) {
       return (
         <Flex flexDir="column" width="125px" align="center" fontSize="2xl">
           <Text fontSize="xs">
