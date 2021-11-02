@@ -37,7 +37,9 @@ export default function TypeFilter({ setType }) {
         setColor(setTypeColor(event.target.value.toLowerCase()));
       }}
     >
-      <option style={{ color: textColor }}>No Type</option>
+      <option style={{ color: textColor }} value={""}>
+        No Type
+      </option>
       {data.types.map((type, index) => {
         return (
           <option key={index} style={{ color: textColor }}>
