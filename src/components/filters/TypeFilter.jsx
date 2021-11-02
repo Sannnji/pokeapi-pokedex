@@ -33,13 +33,20 @@ export default function TypeFilter({ setType }) {
       width={{ base: "100%", lg: "150px" }}
       _focus={{ outline: "none", boxShadow: "none" }}
       onChange={(event) => {
-        setType(event.target.value.toLowerCase());
-        setColor(setTypeColor(event.target.value.toLowerCase()));
+        switch (event.target.value) {
+          case "No Type":
+            setType(null);
+            setColor(null);
+            break;
+
+          default:
+            setType(event.target.value.toLowerCase());
+            setColor(setTypeColor(event.target.value.toLowerCase()));
+            break;
+        }
       }}
     >
-      <option style={{ color: textColor }} value={""}>
-        No Type
-      </option>
+      <option style={{ color: textColor }}>No Type</option>
       {data.types.map((type, index) => {
         return (
           <option key={index} style={{ color: textColor }}>
