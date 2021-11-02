@@ -24,6 +24,9 @@ const GET_POKEMON = gql`
     pokemon(id: $id) {
       id
       name
+      flavorText
+      genus
+      height
       sprites {
         front_default
       }
@@ -172,18 +175,18 @@ const PokeEntry = (props) => {
             </TabList>
 
             <TabPanels>
-              <TabPanel>
-                <Flex
-                  mt={4}
-                  flexDir={{ base: "column", lg: "row" }}
-                  justifyContent="space-evenly"
-                >
+              <TabPanel width="100%" maxH="80vh" overflow="auto">
+                <Flex flexDir="column" alignItems="center">
                   <BasicSection
                     id={pokemon.id}
                     name={pokemon.name}
                     type={pokemon.type}
                     image={pokemon.sprites.front_default}
+                    flavorText={pokemon.flavorText}
+                    genus={pokemon.genus}
+                    height={pokemon.height}
                   />
+
                   <StatSection stats={pokemon.stats} />
                 </Flex>
               </TabPanel>
@@ -192,6 +195,7 @@ const PokeEntry = (props) => {
                   flexDir={{ base: "column", lg: "row" }}
                   justifyContent="center"
                   align="center"
+                  position="relative"
                 >
                   <EvolutionSection
                     currentPoke={pokemon}
