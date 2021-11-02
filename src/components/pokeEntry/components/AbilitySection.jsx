@@ -18,6 +18,7 @@ const AbilitySection = ({ abilities }) => {
               boxShadow="lg"
               p={{ base: 4, lg: 8 }}
               borderRadius="lg"
+              color="black"
             >
               <Box
                 mb={{ base: 4, lg: 8 }}

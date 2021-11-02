@@ -26,16 +26,17 @@ const MoveSection = (props) => {
             py={4}
             bg={bgColor}
             flexDir="row"
-            borderRadius="lg"
             width="100%"
           >
             <TypeBanner typeName={props.type} typeColor={props.typeColor} />
-            <Text ml={8}>{props.name}</Text>
+            <Text ml={8} color="black">
+              {props.name}
+            </Text>
           </Flex>
-          <AccordionIcon position="absolute" right={4} />
+          <AccordionIcon color="black" position="absolute" right={4} />
         </AccordionButton>
 
-        <AccordionPanel py={4} px={4} display="flex">
+        <AccordionPanel py={4} px={4} display="flex" bg="white" color="black">
           <Flex flexDir="column" width="50vw">
             <Text>Power: {props.power ? props.power : "-"}</Text>
 
