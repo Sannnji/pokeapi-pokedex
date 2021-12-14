@@ -4,7 +4,9 @@ const SearchBar = ({ setSearchValue }) => {
   return (
     <InputGroup borderColor="#CBD5E0">
       <InputLeftElement ml={2} children={<i className="fas fa-search" />} />
-      <Input onChange={(event) => setSearchValue(event.target.value)} />
+      <Input
+        onChange={(event) => setSearchValue(event.target.value.toLowerCase())}
+      />
     </InputGroup>
   );
 };
