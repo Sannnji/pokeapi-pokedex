@@ -3,6 +3,11 @@
   "name": "PokeAPI Pokedex",
   "icons": [
     {
+      "src": "favicon.ico",
+      "sizes": "512x512 64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
       "src": "pokeball512.png",
       "type": "image/png",
       "sizes": "512x512"
@@ -10,6 +15,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#FFFFFF",
-  "background_color": "#FFFFFF"
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
 }
