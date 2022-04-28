@@ -5,14 +5,14 @@ const StatSection = (props) => {
 
   const StatRow = (props) => {
     return (
-      <Flex align="center" maxW="350px">
+      <Flex align="center" maxW="280px">
         <Text fontWeight="semibold" width="25vw">
           {props.name}
         </Text>
 
-        <Box bg="white" width="85vw" align="left" ml={4} my={2}>
-          <Box bg="#95FFBC" width={`${(props.stat / 255) * 100}%`}>
-            <Text fontSize="x-small" fontWeight="bold" pl={1}>
+        <Box bg="white" width="75vw" align="left" ml={4} my={2}>
+          <Box bg="#89d6a4" width={`${(props.stat / 255) * 100}%`}>
+            <Text fontSize="x-small" fontWeight="bold" pl={1} pb={.5}>
               {props.stat}
             </Text>
           </Box>
