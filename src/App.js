@@ -30,7 +30,7 @@ function App() {
 
           <Box
             overflow="auto"
-            height={{ base: "62vh", lg: "80vh" }}
+            height={{ base: "65vh", md:"72vh", lg: "80vh" }}
             border="1px"
             borderColor="#CBD5E0"
             borderRadius="lg"
