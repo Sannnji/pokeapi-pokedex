@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Image, SimpleGrid, Flex, Button } from "@chakra-ui/react";
+import { Image, SimpleGrid, Flex, Button, useDisclosure } from "@chakra-ui/react";
 
 import { PokeContext } from "../context";
 import Loading from "./Loading";
+import PokeEntry from "./pokeEntry/PokeEntry";
 
 const GET_POKEMON_BY_FILTER = gql`
   query pokemonByFilter($gen: Int, $type: String) {
@@ -15,6 +16,7 @@ const GET_POKEMON_BY_FILTER = gql`
 `;
 
 const PokeList = ({ gen, type, searchValue }) => {
+  const { isOpen, onToggle, onClose } = useDisclosure();
   const { setPokeId } = useContext(PokeContext);
   let searchResults;
 
@@ -28,6 +30,7 @@ const PokeList = ({ gen, type, searchValue }) => {
           width={{ base: "52px", md: "64px" }}
           onClick={() => {
             setPokeId(pokemon.id);
+            onToggle();
           }}
         >
           <Image
@@ -68,6 +71,7 @@ const PokeList = ({ gen, type, searchValue }) => {
               return <PokeButton pokemon={pokemon} />;
             })}
       </SimpleGrid>
+      <PokeEntry isOpen={isOpen} onClose={onClose} />
     </Flex>
   );
 };
