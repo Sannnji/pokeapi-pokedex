@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Image, SimpleGrid, Flex, Button } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
 
 import { PokeContext } from "../context";
 import Loading from "./Loading";
@@ -17,12 +16,10 @@ const GET_POKEMON_BY_FILTER = gql`
 
 const PokeList = ({ gen, type, searchValue }) => {
   const { setPokeId } = useContext(PokeContext);
-  let location = useLocation();
   let searchResults;
 
   const PokeButton = ({ pokemon }) => {
     return (
-      <Link to={`/${pokemon.id}`} state={{ backgroundLocation: location }}>
         <Button
           key={pokemon.id}
           bg="gray.200"
@@ -40,7 +37,6 @@ const PokeList = ({ gen, type, searchValue }) => {
             opacity="100%"
           />
         </Button>
-      </Link>
     );
   };
 
