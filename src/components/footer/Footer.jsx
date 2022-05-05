@@ -6,7 +6,7 @@ import SocialMediaLinks from "./SocialMediaLinks";
 export default function Footer() {
   return (
     <Box as="footer" fontSize="sm" id="contact" role="contentinfo" py={1}>
-      <Stack direction="row" spacing="4" align="center" justify="space-between">
+      <Stack direction="row" spacing="4" align="center" textAlign="left" justify="space-between">
         <Text>
           {"Made by "}
           <Link href="https://www.linkedin.com/in/jamesji98/" color="cyan.400">
