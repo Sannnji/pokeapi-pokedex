@@ -1,5 +1,5 @@
 function replaceHyphon(string) {
-  return string.replace("-", " ");
+  return string.replaceAll("-", " ");
 }
 
 module.exports = { replaceHyphon };
