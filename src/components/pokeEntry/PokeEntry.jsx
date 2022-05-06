@@ -20,7 +20,7 @@ import Loading from "../Loading";
 import EvolutionSection from "./components/EvolutionSection";
 
 const GET_POKEMON = gql`
-  query pokemon($id: Int!) {
+  query pokemon($id: Int!, $game: String!) {
     pokemon(id: $id) {
       id
       name
@@ -45,13 +45,18 @@ const GET_POKEMON = gql`
         special_defense
         speed
       }
-      moves {
+      moves(game: $game) {
         name
         type
         power
         pp
         accuracy
         damage_class
+        learnMethods {
+          method
+          level_learned_at
+          game
+        }
       }
       evolutionRequirement
       evolutionTrigger
@@ -141,7 +146,10 @@ const PokeEntry = (props) => {
   const { pokeId } = useContext(PokeContext);
 
   const { loading, error, data } = useQuery(GET_POKEMON, {
-    variables: { id: pokeId },
+    variables: { 
+      id: pokeId,
+      game: "emerald"
+    },
   });
 
   const drawerPosition = useBreakpointValue({ base: "bottom", lg: "right" });
