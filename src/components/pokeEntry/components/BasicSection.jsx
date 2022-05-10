@@ -27,9 +27,10 @@ const BasicSection = (props) => {
       </Flex>
 
       <Flex flexDir="row" my={2}>
-        {props.type.map((type) => {
+        {props.type.map((type, index) => {
           return (
             <TypeBanner
+              key={index}
               typeName={type.name}
               typeColor={setTypeColor(type.name)}
               mx={1}
@@ -42,7 +43,14 @@ const BasicSection = (props) => {
         <Flex flexDir="column" textAlign="center" my={8}>
           <Text>Height: {props.height}m</Text>
           <Text>Genus: {props.genus}</Text>
-          <Text p={4} mt={2} bg="#E2E8F0" color="black" borderRadius="lg" maxW="380px">
+          <Text
+            p={4}
+            mt={2}
+            bg="#E2E8F0"
+            color="black"
+            borderRadius="lg"
+            maxW="380px"
+          >
             {props.flavorText}
           </Text>
         </Flex>

@@ -10,9 +10,10 @@ const AbilitySection = ({ abilities }) => {
       </Text>
 
       <Box width="100%" px={{ base: 2, lg: 4 }} overflow="auto">
-        {abilities.map((ability) => {
+        {abilities.map((ability, index) => {
           return (
             <Box
+              key={index}
               my={8}
               bg="#E2E8F0"
               boxShadow="lg"
