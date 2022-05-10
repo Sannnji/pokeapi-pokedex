@@ -33,7 +33,6 @@ const BasicSection = (props) => {
               key={index}
               typeName={type.name}
               typeColor={setTypeColor(type.name)}
-              mx={1}
             />
           );
         })}
