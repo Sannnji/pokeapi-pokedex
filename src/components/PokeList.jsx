@@ -1,6 +1,12 @@
 import { useContext } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Image, SimpleGrid, Flex, Button, useDisclosure } from "@chakra-ui/react";
+import {
+  Image,
+  SimpleGrid,
+  Flex,
+  Button,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 import { PokeContext } from "../context";
 import Loading from "./Loading";
@@ -22,24 +28,24 @@ const PokeList = ({ gen, type, searchValue }) => {
 
   const PokeButton = ({ pokemon }) => {
     return (
-        <Button
-          key={pokemon.id}
-          bg="gray.200"
-          style={styles.pokebox}
-          height={{ base: "52px", md: "64px" }}
-          width={{ base: "52px", md: "64px" }}
-          onClick={() => {
-            setPokeId(pokemon.id);
-            onToggle();
-          }}
-        >
-          <Image
-            src={
-              process.env.PUBLIC_URL + `/images/boxSprites/${pokemon.name}.png`
-            }
-            opacity="100%"
-          />
-        </Button>
+      <Button
+        key={pokemon.id}
+        bg="gray.200"
+        style={styles.pokebox}
+        height={{ base: "52px", md: "64px" }}
+        width={{ base: "52px", md: "64px" }}
+        onClick={() => {
+          setPokeId(pokemon.id);
+          onToggle();
+        }}
+      >
+        <Image
+          src={
+            process.env.PUBLIC_URL + `/images/boxSprites/${pokemon.name}.png`
+          }
+          opacity="100%"
+        />
+      </Button>
     );
   };
 
@@ -64,11 +70,11 @@ const PokeList = ({ gen, type, searchValue }) => {
         spacing={{ base: 3, lg: 4, xl: 5 }}
       >
         {searchValue
-          ? searchResults.map((pokemon) => {
-              return <PokeButton pokemon={pokemon} />;
+          ? searchResults.map((pokemon, index) => {
+              return <PokeButton key={index} pokemon={pokemon} />;
             })
-          : data.pokemonByFilter.map((pokemon) => {
-              return <PokeButton pokemon={pokemon} />;
+          : data.pokemonByFilter.map((pokemon, index) => {
+              return <PokeButton key={index} pokemon={pokemon} />;
             })}
       </SimpleGrid>
       <PokeEntry isOpen={isOpen} onClose={onClose} />
