@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Flex, Text, Box, Image, useColorModeValue } from "@chakra-ui/react";
 import {
   Accordion,
@@ -11,26 +12,33 @@ import { replaceHyphon } from "../../../utils/replaceHyphen";
 import { capitalize } from "../../../utils/capitalize";
 import { setTypeColor } from "../../../utils/setTypeColor";
 import TypeBanner from "../../TypeBanner";
+import LearnMethodFilter from "../../filters/LearnMethodFilter";
 
-const MoveSection = (props) => {
-  const moves = props.moves;
+const MoveSection = ({ moves, version }) => {
+  let filteredList = [];
 
-  const MoveContainer = (props) => {
+  // Filter moves by default learn method level-up
+  // eslint-disable-next-line array-callback-return
+  moves.map((move) => {
+    const moveByMethodFilter = move.learnMethods.map((prop) => {
+      return prop.method === "level-up" ? true : false;
+    });
+
+    if (moveByMethodFilter[0]) {
+      filteredList.push(move);
+    }
+  });
+
+  const MoveContainer = (moves) => {
     const bgColor = useColorModeValue("gray.200", "white");
 
     return (
       <AccordionItem my={4} border={0} position="relative">
         <AccordionButton p={0} _focus={{ outline: "none", boxShadow: "none" }}>
-          <Flex
-            px={4}
-            py={4}
-            bg={bgColor}
-            flexDir="row"
-            width="100%"
-          >
-            <TypeBanner typeName={props.type} typeColor={props.typeColor} />
+          <Flex px={4} py={4} bg={bgColor} flexDir="row" width="100%">
+            <TypeBanner typeName={moves.type} typeColor={moves.typeColor} />
             <Text ml={8} color="black">
-              {props.name}
+              {moves.name}
             </Text>
           </Flex>
           <AccordionIcon color="black" position="absolute" right={4} />
@@ -38,18 +46,23 @@ const MoveSection = (props) => {
 
         <AccordionPanel py={4} px={4} display="flex" bg="white" color="black">
           <Flex flexDir="column" width="50vw">
-            <Text>Power: {props.power ? props.power : "-"}</Text>
+            <Text>
+              Lvl req:{" "}
+              {moves.learnMethod[0].level_learned_at
+                ? moves.learnMethod[0].level_learned_at
+                : capitalize(moves.learnMethod[0].method)}
+            </Text>
+            <Text>Power: {moves.power ? moves.power : "-"}</Text>
 
-            <Text>Accuracy: {props.accuracy ? props.accuracy : "-"}</Text>
+            <Text>Accuracy: {moves.accuracy ? moves.accuracy : "-"}</Text>
           </Flex>
 
           <Flex flexDir="column" width="50vw">
-            <Text>PP: {props.pp}</Text>
-
+            <Text>PP: {moves.pp}</Text>
             <Image
               src={
                 process.env.PUBLIC_URL +
-                `/images/moveClass/${props.damage_class}.png`
+                `/images/moveClass/${moves.damage_class}.png`
               }
               width="24px"
             />
@@ -59,18 +72,28 @@ const MoveSection = (props) => {
     );
   };
 
+  const [moveList, updateMoveList] = useState(filteredList);
   return (
     <Flex maxH="80vh" flexDir="column" align="center" overflow="hidden">
-      <Text fontSize="xl" fontWeight="semibold" mt={4} mb={2}>
-        Moves
-      </Text>
+      <Flex align="center">
+        <Text fontSize="xl" fontWeight="semibold" mt={4} mb={2}>
+          Moves
+        </Text>
+
+        <LearnMethodFilter
+          version={version}
+          moveList={moves}
+          updateMoveList={updateMoveList}
+        />
+      </Flex>
 
       <Box width="100%" px={{ base: 2, lg: 4 }} overflow="auto">
         <Accordion allowToggle>
-          {moves.map((move) => {
-            if (move) {
+          {moveList.length > 0 ? (
+            moveList.map((move, index) => {
               return (
                 <MoveContainer
+                  key={index}
                   type={move.type}
                   typeColor={setTypeColor(move.type)}
                   name={capitalize(replaceHyphon(move.name))}
@@ -78,10 +101,13 @@ const MoveSection = (props) => {
                   accuracy={move.accuracy}
                   damage_class={move.damage_class}
                   pp={move.pp}
+                  learnMethod={move.learnMethods}
                 />
               );
-            } else return null;
-          })}
+            })
+          ) : (
+            <Text textAlign={"center"}>No Moves Available in {version}</Text>
+          )}
         </Accordion>
       </Box>
     </Flex>
