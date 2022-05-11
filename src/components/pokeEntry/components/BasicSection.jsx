@@ -39,7 +39,7 @@ const BasicSection = (props) => {
       </Flex>
 
       {props.height ? (
-        <Flex flexDir="column" textAlign="center" my={8}>
+        <Flex flexDir="column" textAlign="center" my={6}>
           <Text>Height: {props.height}m</Text>
           <Text>Genus: {props.genus}</Text>
           <Text

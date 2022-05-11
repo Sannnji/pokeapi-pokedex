@@ -37,14 +37,26 @@ const MoveSection = ({ moves, version }) => {
         <AccordionButton p={0} _focus={{ outline: "none", boxShadow: "none" }}>
           <Flex px={4} py={4} bg={bgColor} flexDir="row" width="100%">
             <TypeBanner typeName={moves.type} typeColor={moves.typeColor} />
-            <Text ml={8} color="black">
+            <Text
+              ml={{ base: 2, md: 8 }}
+              color="black"
+              fontSize={{ base: "small", md: "medium" }}
+              alignSelf="center"
+            >
               {moves.name}
             </Text>
           </Flex>
           <AccordionIcon color="black" position="absolute" right={4} />
         </AccordionButton>
 
-        <AccordionPanel py={4} px={4} display="flex" bg="white" color="black">
+        <AccordionPanel
+          py={4}
+          px={4}
+          display="flex"
+          bg="white"
+          color="black"
+          fontSize={{ base: "small", md: "medium" }}
+        >
           <Flex flexDir="column" width="50vw">
             <Text>
               Lvl req:{" "}
@@ -59,13 +71,16 @@ const MoveSection = ({ moves, version }) => {
 
           <Flex flexDir="column" width="50vw">
             <Text>PP: {moves.pp}</Text>
-            <Image
-              src={
-                process.env.PUBLIC_URL +
-                `/images/moveClass/${moves.damage_class}.png`
-              }
-              width="24px"
-            />
+            <Flex>
+              <Text>Category: </Text>
+              <Image
+                src={
+                  process.env.PUBLIC_URL +
+                  `/images/moveClass/${moves.damage_class}.png`
+                }
+                width="24px"
+              />
+            </Flex>
           </Flex>
         </AccordionPanel>
       </AccordionItem>

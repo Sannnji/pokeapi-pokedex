@@ -5,7 +5,7 @@ const StatSection = (props) => {
 
   const StatRow = (props) => {
     return (
-      <Flex align="center" maxW="280px">
+      <Flex align="center" maxW={{base: "240px", md: "345px"}}>
         <Text fontWeight="semibold" width="25vw">
           {props.name}
         </Text>
