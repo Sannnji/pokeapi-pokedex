@@ -150,18 +150,11 @@ const PokeEntry = (props) => {
   const [version, setVersion] = useState("platinum");
 
   const { loading, error, data } = useQuery(GET_POKEMON, {
-<<<<<<< HEAD
-    variables: { 
-      id: pokeId,
-      game: "emerald"
-    },
-=======
     variables: {
       id: pokeId,
       game: version,
     },
     pollInterval: 500,
->>>>>>> move-filter
   });
 
   const drawerPosition = useBreakpointValue({ base: "bottom", lg: "right" });
