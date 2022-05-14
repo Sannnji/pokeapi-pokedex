@@ -1,4 +1,5 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { gql, useQuery } from "@apollo/client";
 import {
   Drawer,
@@ -6,12 +7,11 @@ import {
   DrawerBody,
   DrawerOverlay,
   DrawerContent,
-  DrawerCloseButton,
+  DrawerCloseButton
 } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import { Flex, useBreakpointValue } from "@chakra-ui/react";
 
-import { PokeContext } from "../../context";
 import AbilitySection from "./components/AbilitySection";
 import BasicSection from "./components/BasicSection";
 import MoveSection from "./components/MoveSection";
@@ -146,12 +146,15 @@ const GET_POKEMON = gql`
 `;
 
 const PokeEntry = (props) => {
-  const { pokeId } = useContext(PokeContext);
   const [version, setVersion] = useState("platinum");
+  let params = useParams();
+  let navigate = useNavigate();
+
+  console.log(params.pokeId);
 
   const { loading, error, data } = useQuery(GET_POKEMON, {
     variables: {
-      id: pokeId,
+      id: parseInt(params.pokeId),
       game: version,
     },
     pollInterval: 500,
@@ -166,7 +169,9 @@ const PokeEntry = (props) => {
   return (
     <Drawer
       isOpen={props.isOpen}
-      onClose={props.onClose}
+      onClose={() => {
+        navigate(-1);
+      }}
       placement={drawerPosition}
       size="full"
     >
