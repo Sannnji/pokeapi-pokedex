@@ -1,4 +1,6 @@
 import { useContext } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+
 import { gql, useQuery } from "@apollo/client";
 import {
   Image,
@@ -21,10 +23,12 @@ const GET_POKEMON_BY_FILTER = gql`
   }
 `;
 
-const PokeList = ({ gen, type, searchValue }) => {
+const PokeList = () => {
   const { isOpen, onToggle, onClose } = useDisclosure();
   const { setPokeId } = useContext(PokeContext);
   let searchResults;
+  let params = useParams();
+  let [searchParams] = useSearchParams();
 
   const PokeButton = ({ pokemon }) => {
     return (
@@ -50,16 +54,20 @@ const PokeList = ({ gen, type, searchValue }) => {
   };
 
   const { loading, error, data } = useQuery(GET_POKEMON_BY_FILTER, {
-    variables: { gen: gen, type: type },
+    variables: {
+      gen: parseInt(params.genId, 10) || 1,
+      type: params.pokeType === "notype" ? null : params.pokeType,
+    },
     pollInterval: 500,
   });
 
   if (loading) return <Loading />;
   if (error) return <p>error: {error}</p>;
+
   // if search bar contains value, filter pokelist by name
-  if (searchValue) {
+  if (searchParams.get("filter") !== "") {
     searchResults = data.pokemonByFilter.filter(
-      (pokemon) => pokemon.name.startsWith(searchValue) === true
+      (pokemon) => pokemon.name.startsWith(searchParams.get("filter")) === true
     );
   }
 
@@ -69,11 +77,11 @@ const PokeList = ({ gen, type, searchValue }) => {
         columns={{ base: 4, md: 9, lg: 12, xl: 16 }}
         spacing={{ base: 3, lg: 4, xl: 5 }}
       >
-        {searchValue
-          ? searchResults.map((pokemon, index) => {
+        {searchParams.get("filter") == null || searchParams.get("filter") === ""
+          ? data.pokemonByFilter.map((pokemon, index) => {
               return <PokeButton key={index} pokemon={pokemon} />;
             })
-          : data.pokemonByFilter.map((pokemon, index) => {
+          : searchResults.map((pokemon, index) => {
               return <PokeButton key={index} pokemon={pokemon} />;
             })}
       </SimpleGrid>

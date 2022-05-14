@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Select, useColorModeValue } from "@chakra-ui/react";
 import { useQuery, gql } from "@apollo/client";
 
@@ -15,9 +15,11 @@ const GET_TYPES = gql`
   }
 `;
 
-export default function TypeFilter({ setType }) {
-  const [typeColor, setColor] = useState();
+export default function TypeFilter() {
   const textColor = useColorModeValue("black", "white");
+  let navigate = useNavigate();
+  let params = useParams();
+  console.log(params.pokeType);
 
   const { loading, error, data } = useQuery(GET_TYPES);
 
@@ -26,22 +28,27 @@ export default function TypeFilter({ setType }) {
 
   return (
     <Select
+      value={
+        params.pokeType !== undefined ? capitalize(params.pokeType) : "No Type"
+      }
       ml={{ base: 0, lg: 4 }}
-      bg={typeColor}
+      bg={setTypeColor(params.pokeType)}
       borderColor="#CBD5E0"
-      color={typeColor != null ? "white" : null}
+      color={params.pokeType !== "notype" ? "white" : null}
       width={{ base: "100%", lg: "150px" }}
       _focus={{ outline: "none", boxShadow: "none" }}
       onChange={(event) => {
-        switch (event.target.value) {
+        let type = event.target.value;
+        let genParam = params.genId;
+        switch (type) {
           case "No Type":
-            setType(null);
-            setColor(null);
+            navigate(`${genParam === undefined ? 1 : genParam}/notype`);
             break;
 
           default:
-            setType(event.target.value.toLowerCase());
-            setColor(setTypeColor(event.target.value.toLowerCase()));
+            navigate(
+              `${genParam === undefined ? 1 : genParam}/${type === null ? "notype" : type.toLowerCase()}`
+            );
             break;
         }
       }}

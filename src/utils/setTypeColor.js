@@ -60,6 +60,7 @@ function setTypeColor(type) {
       typeColor = "#CE4069";
       break;
     default:
+      typeColor = "none";
       break;
   }
   return typeColor;

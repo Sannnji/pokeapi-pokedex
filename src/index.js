@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
+import PokeList from "./components/PokeList";
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
@@ -24,7 +26,15 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <ChakraProvider theme={theme}>
       <PokeProvider>
-        <App />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<App />}>
+              <Route index element={<PokeList />} />
+              <Route path=":genId" element={<PokeList />} />
+              <Route path=":genId/:pokeType" element={<PokeList />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
         <ColorModeScript />
       </PokeProvider>
     </ChakraProvider>
