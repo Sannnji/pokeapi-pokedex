@@ -19,7 +19,6 @@ export default function TypeFilter() {
   const textColor = useColorModeValue("black", "white");
   let navigate = useNavigate();
   let params = useParams();
-  console.log(params.pokeType);
 
   const { loading, error, data } = useQuery(GET_TYPES);
 

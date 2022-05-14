@@ -150,8 +150,6 @@ const PokeEntry = (props) => {
   let params = useParams();
   let navigate = useNavigate();
 
-  console.log(params.pokeId);
-
   const { loading, error, data } = useQuery(GET_POKEMON, {
     variables: {
       id: parseInt(params.pokeId),

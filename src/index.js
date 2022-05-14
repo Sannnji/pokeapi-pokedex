@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import App from "./App";
-import PokeList from "./components/PokeList";
 
 import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+
 import theme from "./theme";
+import App from "./App";
+import PokeList from "./components/PokeList";
 import PokeEntry from "./components/pokeEntry/PokeEntry";
 
 const client = new ApolloClient({
