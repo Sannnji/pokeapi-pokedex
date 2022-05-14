@@ -2,7 +2,7 @@ var typeColor;
 
 function setTypeColor(type) {
   switch (type) {
-    case "":
+    case "notype":
       typeColor = "none";
       break;
     case "grass":
