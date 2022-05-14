@@ -1,18 +1,14 @@
-import { useContext } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams, useNavigate, Outlet } from "react-router-dom";
 
 import { gql, useQuery } from "@apollo/client";
 import {
   Image,
   SimpleGrid,
   Flex,
-  Button,
-  useDisclosure,
+  Button
 } from "@chakra-ui/react";
 
-import { PokeContext } from "../context";
 import Loading from "./Loading";
-import PokeEntry from "./pokeEntry/PokeEntry";
 
 const GET_POKEMON_BY_FILTER = gql`
   query pokemonByFilter($gen: Int, $type: String) {
@@ -24,11 +20,10 @@ const GET_POKEMON_BY_FILTER = gql`
 `;
 
 const PokeList = () => {
-  const { isOpen, onToggle, onClose } = useDisclosure();
-  const { setPokeId } = useContext(PokeContext);
   let searchResults;
   let params = useParams();
   let [searchParams] = useSearchParams();
+  let navigate = useNavigate();
 
   const PokeButton = ({ pokemon }) => {
     return (
@@ -39,8 +34,7 @@ const PokeList = () => {
         height={{ base: "52px", md: "64px" }}
         width={{ base: "52px", md: "64px" }}
         onClick={() => {
-          setPokeId(pokemon.id);
-          onToggle();
+          navigate(`/pokedex/${pokemon.id}`)
         }}
       >
         <Image
@@ -85,7 +79,7 @@ const PokeList = () => {
               return <PokeButton key={index} pokemon={pokemon} />;
             })}
       </SimpleGrid>
-      <PokeEntry isOpen={isOpen} onClose={onClose} />
+      <Outlet />
     </Flex>
   );
 };
