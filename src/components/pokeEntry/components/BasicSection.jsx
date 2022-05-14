@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Flex, Text, Image } from "@chakra-ui/react";
 
 import { capitalize } from "../../../utils/capitalize";
@@ -6,6 +7,7 @@ import TypeBanner from "../../TypeBanner";
 
 const BasicSection = (props) => {
   const id = props.id.toString();
+  let navigate = useNavigate();
 
   const IdWithZeros = () => {
     switch (id.length) {
@@ -20,7 +22,13 @@ const BasicSection = (props) => {
 
   return (
     <Flex mt={4} flexDir="column" align="center">
-      <Image src={props.image} />
+      <Image
+        src={props.image}
+        _hover={{ cursor: "pointer" }}
+        onClick={() => {
+          navigate(`/pokedex/${id}`);
+        }}
+      />
       <Flex flexDir="row" ml={1}>
         <IdWithZeros />
         <Text ml={2}>{capitalize(props.name)}</Text>
