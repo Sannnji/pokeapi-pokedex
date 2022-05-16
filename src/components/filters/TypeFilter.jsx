@@ -34,8 +34,8 @@ export default function TypeFilter() {
       bg={setTypeColor(params.pokeType)}
       borderColor="#CBD5E0"
       color={
-        params.pokeType === "notype" ||
-        (params.pokeType === undefined && textColor === "black")
+        (params.pokeType === "notype" || params.pokeType === undefined) &&
+        textColor === "black"
           ? "black"
           : "white"
       }
