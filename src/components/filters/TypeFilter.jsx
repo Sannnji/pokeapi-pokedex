@@ -33,7 +33,12 @@ export default function TypeFilter() {
       ml={{ base: 0, lg: 4 }}
       bg={setTypeColor(params.pokeType)}
       borderColor="#CBD5E0"
-      color={params.pokeType !== "notype" ? "white" : null}
+      color={
+        params.pokeType === "notype" ||
+        (params.pokeType === undefined && textColor === "black")
+          ? "black"
+          : "white"
+      }
       width={{ base: "100%", lg: "150px" }}
       _focus={{ outline: "none", boxShadow: "none" }}
       onChange={(event) => {
@@ -46,19 +51,17 @@ export default function TypeFilter() {
 
           default:
             navigate(
-              `${genParam === undefined ? 1 : genParam}/${type === null ? "notype" : type.toLowerCase()}`
+              `${genParam === undefined ? 1 : genParam}/${
+                type === null ? "notype" : type.toLowerCase()
+              }`
             );
             break;
         }
       }}
     >
-      <option style={{ color: textColor }}>No Type</option>
+      <option>No Type</option>
       {data.types.map((type, index) => {
-        return (
-          <option key={index} style={{ color: textColor }}>
-            {capitalize(type.name)}
-          </option>
-        );
+        return <option key={index}>{capitalize(type.name)}</option>;
       })}
     </Select>
   );
